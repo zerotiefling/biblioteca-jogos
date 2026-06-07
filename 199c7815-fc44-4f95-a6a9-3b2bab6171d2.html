@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Mass Effect Legendary Edition</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('199c7815-fc44-4f95-a6a9-3b2bab6171d2/129a440b-e7f1-41d9-9411-8df6f2833cce.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="199c7815-fc44-4f95-a6a9-3b2bab6171d2/10f71e30-e0a1-4325-980c-50a8a3097569.ico"/> Mass Effect Legendary Edition</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalhes</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="199c7815-fc44-4f95-a6a9-3b2bab6171d2/3b460381-3eee-47f7-860f-8c16422fed9c.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Tempo de jogo</TD>
+								<TD>5h 34m 24s</TD>
+							</TR>
+							<TR>
+								<TD>Última Atividade</TD>
+								<TD><a href="#quicklink-18/05/2023">18/05/2023</a> 21:06:40</TD>
+							</TR>
+							<TR>
+								<TD>Adicionado</TD>
+								<TD><a href="#quicklink-07/06/2026">07/06/2026</a> 0:35:48</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-07/06/2026">07/06/2026</a> 2:47:48</TD>
+							</TR>
+							<TR>
+								<TD>Status de Conclusão</TD>
+								<TD><a href="#quicklink-Jogado">Jogado</a></TD>
+							</TR>
+							<TR>
+								<TD>Biblioteca</TD>
+								<TD><a href="default_library_ascendente_name_ascendente.html#quicklink-Origin">Origin</a></TD>
+							</TR>
+							<TR>
+								<TD>Fonte</TD>
+								<TD><a href="#quicklink-EA app">EA app</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Data de Lançamento</TD>
+								<TD><a href="#quicklink-"></a> </TD>
+							</TR>
+							<TR>
+								<TD>Pontuação da Comunidade</TD>
+								<TD><a href="#quicklink-90">90</a></TD>
+							</TR>
+							<TR>
+								<TD>Avaliação da crítica</TD>
+								<TD><a href="#quicklink-86">86</a></TD>
+							</TR>
+							<TR>
+								<TD>Pontuação do Usuário</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Gênero</TD>
+								<TD><a href="#quicklink-Ação">Ação</a><br/><a href="#quicklink-RPG">RPG</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desenvolvedor</TD>
+								<TD><a href="#quicklink-BioWare">BioWare</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="#quicklink-Electronic Arts">Electronic Arts</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Funções</TD>
+								<TD><a href="#quicklink-Cartas Colecionáveis">Cartas Colecionáveis</a><br/><a href="#quicklink-Compat. Total Com Controle">Compat. Total Com Controle</a><br/><a href="#quicklink-Conquistas">Conquistas</a><br/><a href="#quicklink-Dificuldade Ajustável">Dificuldade Ajustável</a><br/><a href="#quicklink-Remote Play Na TV">Remote Play Na TV</a><br/><a href="#quicklink-Som Estéreo">Som Estéreo</a><br/><a href="#quicklink-Som Surround">Som Surround</a><br/><a href="#quicklink-Um Jogador">Um Jogador</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://steamcommunity.com/app/1328670" target="_blank">Central da comunidade</a><br/><a href="https://steamcommunity.com/app/1328670/discussions/" target="_blank">Discussões</a><br/><a href="https://steamcommunity.com/app/1328670/guides/" target="_blank">Guias</a><br/><a href="https://store.steampowered.com/news/?appids=1328670" target="_blank">Notícias</a><br/><a href="https://store.steampowered.com/app/1328670" target="_blank">Página na loja</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=1328670" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/stats/1328670/achievements" target="_blank">Conquistas</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="#quicklink-Ação">Ação</a><br/><a href="#quicklink-Atmosférico">Atmosférico</a><br/><a href="#quicklink-Boa Trama">Boa Trama</a><br/><a href="#quicklink-Clássico">Clássico</a><br/><a href="#quicklink-Combate">Combate</a><br/><a href="#quicklink-Conteúdo Sexual">Conteúdo Sexual</a><br/><a href="#quicklink-Espacial">Espacial</a><br/><a href="#quicklink-Ficção Científica">Ficção Científica</a><br/><a href="#quicklink-Militar">Militar</a><br/><a href="#quicklink-Nudez">Nudez</a><br/><a href="#quicklink-Personalização de Personagem">Personalização de Personagem</a><br/><a href="#quicklink-Protagonista Mulher">Protagonista Mulher</a><br/><a href="#quicklink-Romance">Romance</a><br/><a href="#quicklink-RPG">RPG</a><br/><a href="#quicklink-RPG de Ação">RPG de Ação</a><br/><a href="#quicklink-Tiro">Tiro</a><br/><a href="#quicklink-Tiro em Terceira Pessoa">Tiro em Terceira Pessoa</a><br/><a href="#quicklink-Trilha Sonora Boa">Trilha Sonora Boa</a><br/><a href="#quicklink-Um Jogador">Um Jogador</a><br/><a href="#quicklink-Você Decide">Você Decide</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descri&#231;&#227;o</H3>
+				</div>
+				<div class="description">
+					Uma pessoa é tudo que protege a humanidade da maior ameaça que já enfrentou. Reviva a lenda de Comandante Shepard na aclamada trilogia de jogos com Mass Effect™ Legendary Edition. Inclui o conteúdo básico para um jogador ou uma jogadora e mais de 40 DLCs de Mass Effect, Mass Effect 2 e Mass Effect 3, além de armas promocionais, armaduras e pacotes, todos remasterizados e otimizados para 4K Ultra HD.<br><br><br>Conheça um universo incrivelmente rico e detalhado onde suas decisões têm consequências profundas na ação e no resultado.<h2 class="bb_tag"><strong>Reviva a saga cinematográfica</strong></h2> A ação emocionante se junta a uma narrativa interativa e envolvente em que você decide como sua história vai se desenrolar. <br><ul class="bb_ul"><li>Três jogos, um inicializador: Jogue o conteúdo básico para um jogador ou uma jogadora e mais de 40 DLCs dos três jogos, incluindo armas promocionais, armaduras e pacotes.<br></li><li>Remasterizada para uma nova geração: Reviva a trilogia em 4K Ultra HD com desempenho, visuais e gráficos aprimorados, todos disponíveis em HDR.<br></li><li>Melhorias visuais nos 3 jogos: As atualizações incluem modelos, shaders, efeitos, iluminação e profundidade de campo aprimorados, além de áudio de resolução máxima.<h2 class="bb_tag"><strong>Vivencie a lenda de Shepard</strong></h2>Crie e personalize seu ou sua personagem, de sua aparência e habilidades até seu arsenal personalizado, e lidere seu esquadrão de reconhecimento de elite por uma galáxia mergulhada no caos.<br></li><li>Novas personalizações de Shepard: Com cabelo, maquiagem, cor dos olhos e tons de pele aprimorados, você pode personalizar seu ou sua Shepard em um criador de personagem unificado, com todas as opções da trilogia completa, ou escolher jogar com a icônica Comandante Shepard de Mass Effect 3, já disponível em todos os títulos.<br></li><li>Melhorias de jogabilidade no primeiro jogo de Mass Effect: Foram aprimorados a mira e o equilíbrio de armas, os efeitos de som, os controles Mako, entradas/controles, o comportamento do esquadrão, o comportamento de cobertura e as câmeras de jogo.<h2 class="bb_tag"><strong>Reflita sobre suas escolhas</strong></h2>Suas escolhas são transportadas para o jogo seguinte. Cada decisão que você tomar influenciará o resultado de cada missão, cada relacionamento, cada batalha — e até mesmo o destino da própria galáxia.<br></li><li>Melhorias visuais no primeiro jogo de Mass Effect: O jogo recebeu uma renovação completa, incluindo arte ambiental, efeitos visuais e nova iluminação em níveis.<br></li><li>Atualizações para PC: tenha uma experiência de PC modernizada nos três jogos, com suporte para controle nativo e formato widescreen de 21:9, melhorias de navegação na interface de usuário e compatibilidade com DirectX 11.<h2 class="bb_tag"><strong> Conteúdo </strong></h2>Mass Effect Legendary Edition inclui o conteúdo básico para um jogador ou uma jogadora dos três títulos (Mass Effect, Mass Effect 2 e Mass Effect 3), seus DLCs de história para um jogador favoritos, armas promocionais, armaduras e pacotes:<br></li><li>DLCs: Bring Down the Sky, Genesis, Zaeed — The Price of Revenge, Kasumi — Stolen Memory, Lair of the Shadow Broker, Pacote Firewalker, Overlord, Normandy Crash Site, Arrival, Genesis 2, From Ashes, Versão estendida do final do Mass Effect 3, Leviathan, Omega e Citadel.<br></li><li>Armas e Armaduras: Arma e Armadura Cerberus, Arc Projector, Arma e Armadura de Colecionador, Arma e Armadura Terminus, M-21 Incisor, Armadura Blood Dragon, Armadura Inferno, Capuz Recon, Interface Sentry, Visor Umbra, Equipamento de Guerra N7, AT-12 Raider, Chakram Launcher, M-55 Argus, M-90 Indra e Armadura Reckoner Knight.<br></li><li>Pacotes: Pacote Equalizer, Pacote Aegis, Pacote Firepower, Pacote Groundside Resistance, Pacote Recon Operations, Pacote Firefight, Pacote Alternativo de Aparência 1 de ME2, Pacote Alternativo de Aparência 2 de ME2, Pacote Alternativo de Aparência 1 de ME3 e Pacote da Edição de Colecionadores N7.</li></ul>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

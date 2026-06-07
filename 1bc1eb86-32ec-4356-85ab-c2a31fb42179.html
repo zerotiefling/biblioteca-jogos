@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Castlevania: Lords of Shadow - Ultimate Edition</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('1bc1eb86-32ec-4356-85ab-c2a31fb42179/2945c48e-407d-4f56-895b-acfe3d7438ef.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="1bc1eb86-32ec-4356-85ab-c2a31fb42179/4a3ad0ed-b2a3-49d5-9dcd-0ab48b117e67.ico"/> Castlevania: Lords of Shadow - Ultimate Edition</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalhes</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="1bc1eb86-32ec-4356-85ab-c2a31fb42179/394f2a19-73f3-4da1-9914-4b509d1f56a4.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Tempo de jogo</TD>
+								<TD>41m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Última Atividade</TD>
+								<TD><a href="#quicklink-18/01/2023">18/01/2023</a> 16:52:53</TD>
+							</TR>
+							<TR>
+								<TD>Adicionado</TD>
+								<TD><a href="#quicklink-07/06/2026">07/06/2026</a> 0:35:51</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-07/06/2026">07/06/2026</a> 0:38:23</TD>
+							</TR>
+							<TR>
+								<TD>Status de Conclusão</TD>
+								<TD><a href="#quicklink-Jogado">Jogado</a></TD>
+							</TR>
+							<TR>
+								<TD>Biblioteca</TD>
+								<TD><a href="default_library_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Fonte</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Data de Lançamento</TD>
+								<TD><a href="#quicklink-27/08/2013">27/08/2013</a> </TD>
+							</TR>
+							<TR>
+								<TD>Pontuação da Comunidade</TD>
+								<TD><a href="#quicklink-80">80</a></TD>
+							</TR>
+							<TR>
+								<TD>Avaliação da crítica</TD>
+								<TD><a href="#quicklink-84">84</a></TD>
+							</TR>
+							<TR>
+								<TD>Pontuação do Usuário</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Gênero</TD>
+								<TD><a href="#quicklink-Adventure">Adventure</a><br/><a href="#quicklink-Hack and slash/Beat 'em up">Hack and slash/Beat 'em up</a><br/><a href="#quicklink-Role-playing (RPG)">Role-playing (RPG)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desenvolvedor</TD>
+								<TD><a href="#quicklink-MercurySteam">MercurySteam</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="#quicklink-Konami">Konami</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Funções</TD>
+								<TD><a href="#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://store.steampowered.com/app/234080" target="_blank">Steam</a><br/><a href="http://www.castlevania-lordsofshadow.com/" target="_blank">Official Website</a><br/><a href="https://www.reddit.com/r/castlevania" target="_blank">Subreddit</a><br/><a href="https://castlevania.fandom.com/wiki/Castlevania:_Lords_of_Shadow" target="_blank">Community Wiki</a><br/><a href="https://en.wikipedia.org/wiki/Castlevania:_Lords_of_Shadow" target="_blank">Wikipedia</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descri&#231;&#227;o</H3>
+				</div>
+				<div class="description">
+					<i>Castlevania: Lords of Shadow – Ultimate Edition</i> é uma sombria e vívida recriação da mitologia de Castlevania. É o fim dos dias e a tomada da Terra por poderes malévolos. A aliança com os céus foi ameaçada por uma força sombria e malévola - os misteriosos Senhores das Trevas. Nesta Terra devastada, as almas dos mortos vagam sem conseguir encontrar paz, enquanto criaturas demoníacas espalham caos e morte entre os vivos. <br><br>Gabriel Belmont é um membro da Irmandade da Luz, um grupo de elite de cavaleiros sagrados que protegem e defendem os inocentes contra o sobrenatural. Sua amada esposa foi brutalmente assassinada pelas forças demoníacas das trevas e sua alma aprisionada pela eternidade. Ao encontrar-se entre os mundos da vida e da morte, ela percebe o terrível risco eminente e guia Gabriel ao seu destino e à esperança de salvação para o mundo.<br><br>Gabriel deve encontrar os misteriosos Senhores das Trevas para reunir as peças de uma relíquia chamada “Máscara de Deus”, que pode purificar o mundo e tem o poder de trazer os mortos de volta à vida. Ao longo da jornada de Gabriel, os jogadores atravessarão mais de 50 fases desenvolvidas de forma incrível em 3D, enfrentarão mais de 45 inimigos e derrotarão enormes adversários em tempo real com habilidades, poderes e agilidade.<br><br><strong><u>Reverie – DLC</u></strong><br>Reverie marca o retorno ao castelo que representa o clímax do jogo, enquanto Gabriel tenta ajudar a serviçal da Rainha vampira, morta recentemente. O download abrange três fases e apresenta uma incrível reviravolta na trama do jogo.<br><br><strong><u>Resurrection – DLC</u></strong><br>Resurrection, que ocorre após a conclusão de Reverie, revela o destino de Gabriel e do clã Belmont. Gabriel deve enfrentar um macabro demônio conhecido apenas como ‘O Esquecido’, que se libertou de sua antiga prisão.<br><br>Essas novas fases DLC trazem um final impressionante ao conto épico de morte, traição e redenção da KONAMI – com ‘O Esquecido’ em sua tentativa de destruir a humanidade e somente Gabriel entre ele e seu objetivo...<h2 class="bb_tag">Principais Recursos</h2><ul class="bb_ul"><li>Desenvolvido por MercurySteam - Climax Studios.<br></li><li>Jogue Castlevania: Lords of Shadow – Ultimate Edition e curta o jogo completo, além dos bônus Reverie e Resurrection!<br></li><li>O incrível elenco do jogo apresenta dublês de voz de alto calibre, com Gabriel dublado por Robert Carlyle OBE (Once Upon a Time, Extermínio 2, Trainspotting, Ou Tudo ou Nada e Stargate Universe) e Sir Patrick Stewart (X-Men, Jornada nas Estrelas: A Nova Geração) como o misterioso Zobek. Natasha McElhone (A Outra, Californication, O Show de Truman) e Jason Isaacs (Falcão Negro em Perigo, O Patriota, série Harry Potter) complementam os talentos.<br></li><li>Curta os novos recursos do jogo, como os Gráficos de Alta Definição aprimorados a 60 quadros por segundo (especificação recomendada), integração de Conquistas através de Steam com salvamento em nuvem, e suporte para Big Picture, proporcionando controle total através do Gamepad.<br></li><li>Suporte para recursos AMD, tais como tecnologia Eyefinity e Crossfire™, assim como suporte para a tecnologia Nvidia SLI.<br></li><li>O português do Brasil foi incorporado aos idiomas.<br></li><li>Mergulhe na linha do tempo alternativa de Lords of Shadow, encontre personagens clássicos e viva incríveis histórias paralelas. Descubra o destino de Gabriel. <br></li><li>Supere os obstáculos usando a as múltiplas funções da Cruz de Combate e calibre suas habilidades em jogos de plataforma nesta sensacional aventura. Atravesse abismos, escale paredes inclinadas, faça rapel em penhascos, agarre e jogue toda e qualquer coisa que estiver no seu caminho!<br></li><li>Resolva quebra-cabeças enganosos ao longo da sua jornada para destravar novos itens que melhorarão suas chances de sucesso. Vasculhe cada pedrinha, pois nunca se sabe o que poderá encontrar.<br></li><li>Batalhas entre Titãs: Enfrente inimigos monstruosos, do tamanho de mundos inteiros, que exigem ataques especiais e muita agilidade para que sejam vencidos.<br></li><li>Use armas secundárias, tais como adagas e água benta, e combine-as com magias da luz e das trevas para realizar uma enorme variedade de ataques poderosos contra os inimigos. Gerencie seus feitiços, pois o poder cobra seu preço!<br></li><li>Explore ruínas góticas, castelos sombrios, florestas antigas e paisagens congeladas e desoladas. Descubra um enorme mundo, com muitos caminhos e locais secretos que contêm itens que ajudarão Gabriel em sua jornada.</li></ul>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

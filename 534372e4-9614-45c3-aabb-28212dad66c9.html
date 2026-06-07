@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Kenshi</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('534372e4-9614-45c3-aabb-28212dad66c9/88bd8336-2348-4fa2-85e6-9fff76a68e8b.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="534372e4-9614-45c3-aabb-28212dad66c9/57b94c33-5923-45f6-bfc3-325e0ba44495.ico"/> Kenshi</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalhes</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="534372e4-9614-45c3-aabb-28212dad66c9/223fd631-88c4-4e5d-beaf-80d508d20f8f.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Tempo de jogo</TD>
+								<TD>2h 49m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Última Atividade</TD>
+								<TD><a href="#quicklink-25/09/2025">25/09/2025</a> 22:14:18</TD>
+							</TR>
+							<TR>
+								<TD>Adicionado</TD>
+								<TD><a href="#quicklink-07/06/2026">07/06/2026</a> 0:35:51</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-07/06/2026">07/06/2026</a> 0:45:41</TD>
+							</TR>
+							<TR>
+								<TD>Status de Conclusão</TD>
+								<TD><a href="#quicklink-Jogado">Jogado</a></TD>
+							</TR>
+							<TR>
+								<TD>Biblioteca</TD>
+								<TD><a href="default_library_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Fonte</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Data de Lançamento</TD>
+								<TD><a href="#quicklink-06/12/2018">06/12/2018</a> </TD>
+							</TR>
+							<TR>
+								<TD>Pontuação da Comunidade</TD>
+								<TD><a href="#quicklink-83">83</a></TD>
+							</TR>
+							<TR>
+								<TD>Avaliação da crítica</TD>
+								<TD><a href="#quicklink-84">84</a></TD>
+							</TR>
+							<TR>
+								<TD>Pontuação do Usuário</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Gênero</TD>
+								<TD><a href="#quicklink-Adventure">Adventure</a><br/><a href="#quicklink-Indie">Indie</a><br/><a href="#quicklink-Real Time Strategy (RTS)">Real Time Strategy (RTS)</a><br/><a href="#quicklink-Role-playing (RPG)">Role-playing (RPG)</a><br/><a href="#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desenvolvedor</TD>
+								<TD><a href="#quicklink-Lo-Fi Games">Lo-Fi Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="#quicklink-Lo-Fi Games">Lo-Fi Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Funções</TD>
+								<TD><a href="#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://store.steampowered.com/app/233860" target="_blank">Steam</a><br/><a href="http://www.lofigames.com" target="_blank">Official Website</a><br/><a href="https://www.facebook.com/OfficialKenshi" target="_blank">Facebook</a><br/><a href="https://twitter.com/KenshiOfficial" target="_blank">Twitter</a><br/><a href="https://www.instagram.com/lofigames" target="_blank">Instagram</a><br/><a href="https://www.gog.com/game/kenshi" target="_blank">GOG</a><br/><a href="https://www.twitch.tv/directory/game/Kenshi" target="_blank">Twitch</a><br/><a href="https://discord.gg/invite/R6258etsHE" target="_blank">Discord</a><br/><a href="https://www.reddit.com/r/Kenshi/" target="_blank">Subreddit</a><br/><a href="https://kenshi.fandom.com/wiki/Kenshi_Wiki" target="_blank">Community Wiki</a><br/><a href="https://en.wikipedia.org/wiki/Kenshi_(video_game)" target="_blank">Wikipedia</a><br/><a href="https://www.youtube.com/@LoFiGames" target="_blank">YouTube</a><br/><a href="https://store.epicgames.com/en-US/p/kenshi-c79c40" target="_blank">Epic</a><br/><a href="https://bsky.app/profile/lofigames.com" target="_blank">Bluesky</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descri&#231;&#227;o</H3>
+				</div>
+				<div class="description">
+					Um RPG de mundo aberto onde você controla grupos, com mecânicas para fazer o que quiser em vez de seguir uma história linear. Torne-se um comerciante, ladrão, rebelde, chefe de guerra, aventureiro, fazendeiro, escravo ou comida de canibal.<br><br><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/233860/extras/2aaba52a61d7a2cfef66870fc86b0887.avif?t=1779293333"></span><br><br>Pesquise itens e crie novos equipamentos. Compre construções e aprimore-as para servirem de fortaleza quando algo der errado, ou use-as para abrir um negócio. Ajude ou enfrente as diversas facções no mundo enquanto busca a força e a riqueza necessárias para sobreviver num deserto hostil. Carregue aliados feridos a um local seguro e tente não perder ninguém.<h2 class="bb_tag">DESTAQUES</h2><br><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/233860/extras/fee4568c3a4b59d891bded4b954fc4de.poster.avif?t=1779293333"></span><br><strong>Jogabilidade livre num mundo contínuo</strong> do maior RPG para um jogador desde Daggerfall, com uma área de mais de 870 quilômetros quadrados. O jogo nunca tentará limitar você ou seu estilo pessoal.<br><br><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/233860/extras/fdfd271d771ec2459da7b19952bb3e97.poster.avif?t=1779293333"></span><br><strong>Crie e personalize quantos personagens quiser</strong> e forme uma tropa inteira para lutar por você. Ao ganhar experiência, seus personagens ficarão mais fortes em atributos e também em aparência.<br><br><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/233860/extras/50b10838e9fdca16fe42f9b4b1902bfb.poster.avif?t=1779293333"></span><br><strong>Construa uma base</strong> onde poderá pesquisar novas tecnologias, aprimorar suas defesas e criar equipamentos.<br><br><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/233860/extras/bc0b2c58362553937fa7b6c2b0948ebc.avif?t=1779293333"></span><br><strong>Uma abordagem original no gênero que mistura RPG e estratégia em tempo real</strong>. Não existem “heróis” com atributos artificialmente mais fortes que outros personagens. Todo personagem ou NPC do mundo tem oportunidades iguais, um nome e uma vida.<br><br><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/233860/extras/3df1b8bf2fc5a83e259a5532a67e353f.avif?t=1779293333"></span><br><strong>O seu personagem não é o escolhido</strong>. Ele não é grandioso ou poderoso, nem tem mais “pontos de vida” que os outros. Tampouco é o centro do universo ou alguém especial. A menos que você se esforce para isso.<br><br><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/233860/extras/0fd274b7a9379752bef30d7b6195d2ae.avif?t=1779293333"></span><br><strong>Compre construções e aprimore-as</strong> para servirem de fortaleza quando algo der errado, ou use-as para abrir um negócio.<br><br><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/233860/extras/58f573bf7fd644f25e4a2a0ee704db8e.avif?t=1779293333"></span><br><strong>Possibilidades e grande variedade de jogo</strong>. O seu personagem pode ser bom, mau, um comerciante, um ladrão, morar numa cidade ou num deserto, viajar sozinho ou com um exército, construir uma fortaleza, demolir uma cidade, e muito mais. Dedique-se a libertar escravos ou, se der azar, caia nas mãos de escravistas.<br><br><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/233860/extras/c3105992dbad7c56a7331ee5f557fadf.avif?t=1779293333"></span><br><strong>Mundo dinâmico e em constante transformação</strong>. Ajude ou atrapalhe quem quiser, ou se isole de todos — o mundo continuará dando voltas. Você não está num “jogo” qualquer, mas sim vivendo e sobrevivendo na simulação de um mundo.<br><br><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/233860/extras/6395068f26b9525395faa9d55c06622a.avif?t=1779293333"></span><br><strong>Seu personagem pode ser capturado por canibais e devorado vivo</strong>, ou vendido por escravistas para trabalhar nas minas. Essas situações não são programadas, apenas fazem parte de um mundo caótico que acaba com a sua vida por acaso. Tudo pode acontecer, e tudo pode ser superado se você tiver forças.<br><br><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/233860/extras/f954416077e4e96be04e98559131bfab.avif?t=1779293333"></span><br><strong>Nenhum escalonamento de nível</strong>. O mundo não sobe de nível com você, e os itens das lojas não mudam de acordo com o seu nível. No início do jogo, quase todos são mais fortes que você, e a sobrevivência é um desafio. O jogo não vai lhe estender a mão, nem ajudar a levantar.<br><br><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/233860/extras/b61bb303c59be5dd2449e360f9225680.avif?t=1779293333"></span><br><strong>Sistema médico realista que afeta a jogabilidade</strong>. Se um personagem estiver com a perna ferida, vai mancar ou rastejar, atrasando seu grupo. Se o braço dele estiver machucado, a espada precisará ser empunhada com uma só mão, no melhor dos casos. Ferimentos graves podem levar à amputação, obrigando a vítima a usar próteses robóticas. Hemorragias podem causar desmaios e atrair predadores. Os atributos dos personagens são impactados por equipamentos, peso dos itens, perda de sangue, ferimentos e fome.<br><br><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/233860/extras/45bb3068b93f07a6555639ca6d871434.avif?t=1779293333"></span><br><strong>Inteligência artificial avançada</strong> que permite aos personagens raciocinar e buscar atingir metas e desejos de longo prazo. Os membros do grupo trabalharão em equipe, carregando aliados feridos até locais seguros. É possível configurar seus personagens para que cuidem de tarefas menores e da produção de itens na sua base.<br><br><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/233860/extras/023efd9b04ff62f9353a9d494d9ee076.avif?t=1779293333"></span><br><strong>Ajude ou enfrente as diversas facções</strong> no mundo enquanto busca a força e a riqueza necessárias para sobreviver num ambiente hostil.<br><br><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/233860/extras/5d6d57773d00c411a835b359836c347f.avif?t=1779293333"></span><br><strong>Desenvolvimento independente</strong> e sem interferências no design por imposição de engravatados que nunca gostaram de videogames.<br><br><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/233860/extras/1ff454ad44e83fb9a66f5a7bdc64c2eb.avif?t=1779293333"></span><br><strong>Mundo original</strong>. Nada de clichês, imitações ou estereótipos de fantasia. Magia zero.
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

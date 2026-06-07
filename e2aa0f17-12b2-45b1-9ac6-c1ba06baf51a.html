@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Overcooked</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('e2aa0f17-12b2-45b1-9ac6-c1ba06baf51a/1f8e4c56-37a8-4dd5-ad7d-6ac7d37cdad5.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="e2aa0f17-12b2-45b1-9ac6-c1ba06baf51a/f7f657c9-94e9-44be-bdf7-1138dd6b8626.ico"/> Overcooked</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalhes</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="e2aa0f17-12b2-45b1-9ac6-c1ba06baf51a/f70c6c07-b02c-48a4-84d4-3d5d185f0732.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Tempo de jogo</TD>
+								<TD>5m 17s</TD>
+							</TR>
+							<TR>
+								<TD>Última Atividade</TD>
+								<TD><a href="#quicklink-Nunca">Nunca</a> </TD>
+							</TR>
+							<TR>
+								<TD>Adicionado</TD>
+								<TD><a href="#quicklink-07/06/2026">07/06/2026</a> 0:35:37</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-07/06/2026">07/06/2026</a> 2:48:09</TD>
+							</TR>
+							<TR>
+								<TD>Status de Conclusão</TD>
+								<TD><a href="#quicklink-Jogado">Jogado</a></TD>
+							</TR>
+							<TR>
+								<TD>Biblioteca</TD>
+								<TD><a href="default_library_ascendente_name_ascendente.html#quicklink-Epic">Epic</a></TD>
+							</TR>
+							<TR>
+								<TD>Fonte</TD>
+								<TD><a href="#quicklink-Epic">Epic</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Data de Lançamento</TD>
+								<TD><a href="#quicklink-"></a> </TD>
+							</TR>
+							<TR>
+								<TD>Pontuação da Comunidade</TD>
+								<TD><a href="#quicklink-88">88</a></TD>
+							</TR>
+							<TR>
+								<TD>Avaliação da crítica</TD>
+								<TD><a href="#quicklink-81">81</a></TD>
+							</TR>
+							<TR>
+								<TD>Pontuação do Usuário</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Gênero</TD>
+								<TD><a href="#quicklink-Ação">Ação</a><br/><a href="#quicklink-Casual">Casual</a><br/><a href="#quicklink-Indie">Indie</a><br/><a href="#quicklink-Simulação">Simulação</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desenvolvedor</TD>
+								<TD><a href="#quicklink-Ghost Town Games Ltd.">Ghost Town Games Ltd.</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="#quicklink-Team17 Digital Ltd">Team17 Digital Ltd</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Funções</TD>
+								<TD><a href="#quicklink-Cartas Colecionáveis">Cartas Colecionáveis</a><br/><a href="#quicklink-Compartilhamento Em Família">Compartilhamento Em Família</a><br/><a href="#quicklink-Compat. Total Com Controle">Compat. Total Com Controle</a><br/><a href="#quicklink-Conquistas">Conquistas</a><br/><a href="#quicklink-Coop. Tela Dividida/Compart.">Coop. Tela Dividida/Compart.</a><br/><a href="#quicklink-Cooperativo">Cooperativo</a><br/><a href="#quicklink-Jxj">Jxj</a><br/><a href="#quicklink-Jxj Tela Dividida/Compart.">Jxj Tela Dividida/Compart.</a><br/><a href="#quicklink-Multijogador">Multijogador</a><br/><a href="#quicklink-Nuvem">Nuvem</a><br/><a href="#quicklink-Remote Play Na TV">Remote Play Na TV</a><br/><a href="#quicklink-Remote Play No Celular">Remote Play No Celular</a><br/><a href="#quicklink-Remote Play No Tablet">Remote Play No Tablet</a><br/><a href="#quicklink-Remote Play Together">Remote Play Together</a><br/><a href="#quicklink-Tela Dividida/Compartilhada">Tela Dividida/Compartilhada</a><br/><a href="#quicklink-Um Jogador">Um Jogador</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://steamcommunity.com/app/448510" target="_blank">Central da comunidade</a><br/><a href="https://steamcommunity.com/app/448510/discussions/" target="_blank">Discussões</a><br/><a href="https://steamcommunity.com/app/448510/guides/" target="_blank">Guias</a><br/><a href="https://store.steampowered.com/news/?appids=448510" target="_blank">Notícias</a><br/><a href="https://store.steampowered.com/app/448510" target="_blank">Página na loja</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=448510" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/stats/448510/achievements" target="_blank">Conquistas</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="#quicklink-Ação">Ação</a><br/><a href="#quicklink-Arcade">Arcade</a><br/><a href="#quicklink-Baseado em Equipes">Baseado em Equipes</a><br/><a href="#quicklink-Campanha Cooperativa">Campanha Cooperativa</a><br/><a href="#quicklink-Casual">Casual</a><br/><a href="#quicklink-Cooperativo">Cooperativo</a><br/><a href="#quicklink-Cooperativo Local">Cooperativo Local</a><br/><a href="#quicklink-Culinária">Culinária</a><br/><a href="#quicklink-Engraçado">Engraçado</a><br/><a href="#quicklink-Estilizado">Estilizado</a><br/><a href="#quicklink-Fofo">Fofo</a><br/><a href="#quicklink-Indie">Indie</a><br/><a href="#quicklink-Jogador x Jogador (PvP)">Jogador x Jogador (PvP)</a><br/><a href="#quicklink-Local para 4 Jogadores">Local para 4 Jogadores</a><br/><a href="#quicklink-Multijogador">Multijogador</a><br/><a href="#quicklink-Multijogador Local">Multijogador Local</a><br/><a href="#quicklink-Para Toda a Família">Para Toda a Família</a><br/><a href="#quicklink-Simulação">Simulação</a><br/><a href="#quicklink-Um Jogador">Um Jogador</a><br/><a href="#quicklink-Visão Superior">Visão Superior</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descri&#231;&#227;o</H3>
+				</div>
+				<div class="description">
+					<p class="bb_paragraph" style="text-align: center"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/448510/extras/403f42e51f0cfd8f4884b6a1eb2cec76.poster.avif?t=1780480467"></span></p><p class="bb_paragraph">Overcooked é um jogo caótico de cooperação na cozinha para um a quatro jogadores. Com trabalho em equipe, você e seus amigos chefs devem preparar, cozinhar e servir uma variedade de pedidos saborosos antes que os clientes se impacientem. Afiem as facas e alvejem as roupas de chef porque aqui não tem lugar para pepino, os pedidos não são sopa e é um abacaxi atrás do outro!&nbsp;</p><p class="bb_paragraph"></p><p class="bb_paragraph">O Reino da Cebola está em perigo e só a cozinha mais refinada poderá salvá-lo. Em Overcooked, os jogadores se aventurarão por uma variedade de cozinhas cruéis e incomuns durante as missões para se tornarem chefs capazes de conquistar um antigo mal comestível que devasta as terras.</p><p class="bb_paragraph"></p><p class="bb_paragraph">Jogue sozinho ou em um jogo clássico de cooperação caótico para até quatro jogadores nos modos cooperativo e competitivo. Vocês terão que preparar uma ampla gama de pratos e trabalhar em equipe para se tornarem o grupo mais eficiente e radical! </p><p class="bb_paragraph"></p><h2 class="bb_tag">Uma missão culinária </h2><p class="bb_paragraph">o Reino da Cebola é um mundo rico, cheio de cozinhas cruéis e incomuns para você conquistar. Participe dessa jornada épica e enfrente um conjunto cada vez mais desafiador e bizarro de cozinhas que porão à prova suas habilidades em cooperação e coordenação até o limite. Cada nível terá um novo desafio para você e sua equipe superarem, seja andar por aí num navio pirata, passar por caminhões em velocidade, cozinhar no gelo flutuante ou servir comida no núcleo tórrido de um submundo escaldante, cada nível testará o ímpeto dos mais valentes chefs.&nbsp;</p><p class="bb_paragraph"></p><h2 class="bb_tag">Controles simples, desafio complexo </h2><p class="bb_paragraph">Overcooked é tão fácil de entender que qualquer um pode se juntar à diversão, mas o difícil é encontrar uma equipe que saiba se comunicar e coordenar as ações quando a vaca atolar na mandioca. Só uma equipe bem azeitada de superchefs conseguirá se destacar!&nbsp;</p><p class="bb_paragraph"></p><h2 class="bb_tag">Diferentes modos de jogar </h2><p class="bb_paragraph">Seja numa fritura quentinha de cooperação local ou salteada em jogo individual, o jogo se desenvolverá em novos níveis, novos personagens chefs e até níveis de desafio competitivo em que equipes de dois integrantes se enfrentarão cara a cara e sem banho-maria na cozinha. Seja qual for o modo de jogo, se acha que aguenta o calor, então prepare-se para entrar na cozinha!&nbsp;</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

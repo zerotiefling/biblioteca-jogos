@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Farlight 84</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('54da2feb-c94f-4838-a24b-664b4a0106bd/0215a97f-2493-4d4d-a8cc-86650f7d5dde.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="54da2feb-c94f-4838-a24b-664b4a0106bd/5bc97946-516f-4004-bc35-53c6287a8b88.ico"/> Farlight 84</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalhes</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="54da2feb-c94f-4838-a24b-664b4a0106bd/70fc175e-a655-4c75-b97b-6e65018dfba1.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Tempo de jogo</TD>
+								<TD>3d 2h 58m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Última Atividade</TD>
+								<TD><a href="#quicklink-29/09/2023">29/09/2023</a> 21:45:53</TD>
+							</TR>
+							<TR>
+								<TD>Adicionado</TD>
+								<TD><a href="#quicklink-07/06/2026">07/06/2026</a> 0:35:52</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-07/06/2026">07/06/2026</a> 2:29:42</TD>
+							</TR>
+							<TR>
+								<TD>Status de Conclusão</TD>
+								<TD><a href="#quicklink-Jogado">Jogado</a></TD>
+							</TR>
+							<TR>
+								<TD>Biblioteca</TD>
+								<TD><a href="default_library_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Fonte</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Data de Lançamento</TD>
+								<TD><a href="#quicklink-16/06/2021">16/06/2021</a> </TD>
+							</TR>
+							<TR>
+								<TD>Pontuação da Comunidade</TD>
+								<TD><a href="#quicklink-30">30</a></TD>
+							</TR>
+							<TR>
+								<TD>Avaliação da crítica</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Pontuação do Usuário</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Gênero</TD>
+								<TD><a href="#quicklink-Shooter">Shooter</a><br/><a href="#quicklink-Tactical">Tactical</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desenvolvedor</TD>
+								<TD><a href="#quicklink-Farlight Games">Farlight Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="#quicklink-Farlight Games">Farlight Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Funções</TD>
+								<TD><a href="#quicklink-Battle Royale">Battle Royale</a><br/><a href="#quicklink-Multiplayer">Multiplayer</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://twitter.com/Farlight84" target="_blank">Twitter</a><br/><a href="https://play.google.com/store/apps/details?id=com.lilith.farlight84&hl=en&gl=US" target="_blank">Google Play</a><br/><a href="https://www.instagram.com/farlight84_official" target="_blank">Instagram</a><br/><a href="https://discord.gg/VNkhSX5BUX" target="_blank">Discord</a><br/><a href="https://www.reddit.com/r/Farlight84Official" target="_blank">Subreddit</a><br/><a href="https://www.twitch.tv/directory/game/Farlight%2084" target="_blank">Twitch</a><br/><a href="https://store.steampowered.com/app/1928420" target="_blank">Steam</a><br/><a href="http://itunes.apple.com/us/app/id1673713581#?platform=iphone" target="_blank">App Store (iPhone)</a><br/><a href="http://itunes.apple.com/us/app/id1673713581#?platform=ipad" target="_blank">App Store (iPad)</a><br/><a href="https://store.epicgames.com/en-US/p/farlight-84-8e689a" target="_blank">Epic</a><br/><a href="https://www.facebook.com/Farlight84" target="_blank">Facebook</a><br/><a href="https://farlight84.farlightgames.com/" target="_blank">Official Website</a><br/><a href="https://www.youtube.com/@Farlight84" target="_blank">YouTube</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descri&#231;&#227;o</H3>
+				</div>
+				<div class="description">
+					<p class="bb_paragraph">Hey Lightcatchers! Are you ready for massive 60-player shootouts? Enjoy fast-paced hero shooter action in Farlight 84!</p><p class="bb_paragraph">Team up with two squadmates and parkour your way through towering cityscapes as you hunt down your enemies. Play as uniquely skilled heroes, tame your Buddy pets, and unlock hundreds of tactical combos to outsmart your opponents. With unlimited respawns, you're free to charge into the fray, break armor, and go all-out without fear! If you've got the guts, you've got the power to forge your own path to victory!</p><h2 class="bb_tag"><strong>[Fast-Paced Action in an Urban Jungle]</strong></h2><p class="bb_paragraph">Prepare to drop into a 60-player battlefield that pushes every limit!</p><p class="bb_paragraph">From open fields to vertical cities, team up and let the bullets fly! Run, climb, and fight your way to victory!</p><p class="bb_paragraph">Loot gear in tight alleyways, wall-run and slide between rooftops, zipline across bridges to reach the high ground, or launch across the map in a giant Rat Cannon. With layered, dynamic map design, every battle delivers endless exciting moments.</p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1928420/extras/78768c58fcedf7a14ec51010543de7e9.poster.avif?t=1776926334"></span></p><h2 class="bb_tag"><strong>[Get Straight Into the Action With One-Tap Looting]</strong></h2><p class="bb_paragraph">Don't struggle with cumbersome controls. Become a master looter in an instant!</p><p class="bb_paragraph">When the battlefield turns hot, reaction speed is crucial. Enemy got the drop on you while you were trying to tweak your loadout? Not in Farlight 84! With the touch of a button, you can equip the best weapons and mods for an instant upgrade! Whether it's shotgun chokes or long-distance sniper scopes, everything gets equipped automatically, so you can focus on what counts—take aim, fire, and win!</p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1928420/extras/94651c8b56a13c270bf4c53b6b4b547c.poster.avif?t=1776926334"></span></p><h2 class="bb_tag"><strong>[No Penalty for Newbies—Respawn and Hit Back Harder]</strong></h2><p class="bb_paragraph">Knocked out? Nope, you're just getting started!</p><p class="bb_paragraph">It's not just about pulling the trigger—you'll need to think on your feet and adapt on the fly. But if you make a mistake, your squad's got your six. Even if you go down, you'll be back in action in seconds and ready to strike back! No need to sit on the sidelines or shrink away from the fight—Even new players can become relentless battle machines!</p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1928420/extras/35e3e07315e6325847e2d1860b581591.poster.avif?t=1776926334"></span></p><h2 class="bb_tag"><strong>[Countless Combinations of Hero and Pet Skills]</strong></h2><p class="bb_paragraph">Each hero brings something different. So get ready to upgrade and expand your tactical playbook!</p><p class="bb_paragraph">Choose your moment, unleash your skills, and nail that kill! And don't forget your Buddies—these tactical pets show up randomly, and they're game-changers! They can summon storms, shift zones, disguise the terrain, steal items while invisible... They're unpredictable, powerful, and always bring surprises to the fight!</p><p class="bb_paragraph">Try combining your weapons, heroes, and Buddies in different ways, and you'll discover dozens of new ways to win!</p><p class="bb_paragraph">There's no one way to win. Every shot opens up new possibilities!</p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1928420/extras/afc599689a72d750f3738a1d06929971.poster.avif?t=1776926334"></span></p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1928420/extras/1ffcca55c9f3e96ddfa40a856fe61515.poster.avif?t=1776926334"></span></p><p class="bb_paragraph"></p><p class="bb_paragraph">Enjoy fast-paced hero battle royale in Farlight 84!</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

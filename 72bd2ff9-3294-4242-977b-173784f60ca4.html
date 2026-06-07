@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Model Builder: Complete Edition</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('72bd2ff9-3294-4242-977b-173784f60ca4/2ae07286-c07e-40b3-b6ba-1e3df2a7f449.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="72bd2ff9-3294-4242-977b-173784f60ca4/274bd4e4-0d47-4271-bdc0-4bf06cf7e6fc.ico"/> Model Builder: Complete Edition</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalhes</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="72bd2ff9-3294-4242-977b-173784f60ca4/2696be75-f714-4861-a4cf-3d5c451c7f3a.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Tempo de jogo</TD>
+								<TD>N&#227;o Jogado</TD>
+							</TR>
+							<TR>
+								<TD>Última Atividade</TD>
+								<TD><a href="#quicklink-Nunca">Nunca</a> </TD>
+							</TR>
+							<TR>
+								<TD>Adicionado</TD>
+								<TD><a href="#quicklink-07/06/2026">07/06/2026</a> 0:35:37</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-07/06/2026">07/06/2026</a> 2:47:57</TD>
+							</TR>
+							<TR>
+								<TD>Status de Conclusão</TD>
+								<TD><a href="#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Biblioteca</TD>
+								<TD><a href="default_library_ascendente_name_ascendente.html#quicklink-Epic">Epic</a></TD>
+							</TR>
+							<TR>
+								<TD>Fonte</TD>
+								<TD><a href="#quicklink-Epic">Epic</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Data de Lançamento</TD>
+								<TD><a href="#quicklink-"></a> </TD>
+							</TR>
+							<TR>
+								<TD>Pontuação da Comunidade</TD>
+								<TD><a href="#quicklink-71">71</a></TD>
+							</TR>
+							<TR>
+								<TD>Avaliação da crítica</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Pontuação do Usuário</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Gênero</TD>
+								<TD><a href="#quicklink-Casual">Casual</a><br/><a href="#quicklink-Simulação">Simulação</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desenvolvedor</TD>
+								<TD><a href="#quicklink-Moonlit S.A.">Moonlit S.A.</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="#quicklink-Green Man Gaming Publishing">Green Man Gaming Publishing</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Funções</TD>
+								<TD><a href="#quicklink-Compartilhamento Em Família">Compartilhamento Em Família</a><br/><a href="#quicklink-Conquistas">Conquistas</a><br/><a href="#quicklink-Um Jogador">Um Jogador</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://steamcommunity.com/app/1164250" target="_blank">Central da comunidade</a><br/><a href="https://steamcommunity.com/app/1164250/discussions/" target="_blank">Discussões</a><br/><a href="https://steamcommunity.com/app/1164250/guides/" target="_blank">Guias</a><br/><a href="https://store.steampowered.com/news/?appids=1164250" target="_blank">Notícias</a><br/><a href="https://store.steampowered.com/app/1164250" target="_blank">Página na loja</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=1164250" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/stats/1164250/achievements" target="_blank">Conquistas</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="#quicklink-3D">3D</a><br/><a href="#quicklink-Casual">Casual</a><br/><a href="#quicklink-Construção">Construção</a><br/><a href="#quicklink-Educativo">Educativo</a><br/><a href="#quicklink-Espacial">Espacial</a><br/><a href="#quicklink-Faça o que Quiser">Faça o que Quiser</a><br/><a href="#quicklink-Ficção Científica">Ficção Científica</a><br/><a href="#quicklink-Guerra">Guerra</a><br/><a href="#quicklink-Mechas">Mechas</a><br/><a href="#quicklink-Militar">Militar</a><br/><a href="#quicklink-Motocicletas">Motocicletas</a><br/><a href="#quicklink-Para Toda a Família">Para Toda a Família</a><br/><a href="#quicklink-Primeira Guerra Mundial">Primeira Guerra Mundial</a><br/><a href="#quicklink-Relaxante">Relaxante</a><br/><a href="#quicklink-Segunda Guerra Mundial">Segunda Guerra Mundial</a><br/><a href="#quicklink-Simulação">Simulação</a><br/><a href="#quicklink-Simulador Imersivo">Simulador Imersivo</a><br/><a href="#quicklink-Submarino">Submarino</a><br/><a href="#quicklink-Tanques">Tanques</a><br/><a href="#quicklink-Voo">Voo</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descri&#231;&#227;o</H3>
+				</div>
+				<div class="description">
+					COMEÇA A CONSTRUIR, COMEÇA A CRIAR<br><br>Junta-te à mais recente moda nos jogos de simulação, dá asas à tua criatividade e constrói modelos fantásticos.<br><br>Recorta, monta, pinta e depois personaliza os teus modelos! Constrói aviões, tanques, navios, figuras e muito mais. Vende as tuas criações para obteres lucro para aumentares a tua caixa de ferramentas.Cria modelos à escala incríveis e épicos para o mundo inteiro ver.<br><br><strong>carreira</strong><br><br>Embarca numa fascinante jornada seguindo as pegadas do avô Stan e as suas conquistas, desbloqueia segredos do passado, aceita encomendas e participa em competições à medida que te tornas o maior mestre artesão do modelismo.<br><br><strong>modelos</strong><br><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1164250/extras/2ceb5112df312cedf8d7062c6b880525.avif?t=1726564095"></span><br><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1164250/extras/5b03d5387a6272548d36dd8cac10eaf1.poster.avif?t=1726564095"></span><br><br>Há muito por onde escolher em termos do que podes montar... e assim que tiveres acabado, há muito mais para desbloqueares. Conta com dezenas de horas de diversão e muito mais nas atualizações após o lançamento.<br><br><strong>constrói</strong><br><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1164250/extras/bde28dc21eca022ce18352505f2436bb.avif?t=1726564095"></span><br><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1164250/extras/506710a53dc6fcdfb9ea47dd61ab40ed.poster.avif?t=1726564095"></span><br><br>Escolhe o modelo que queres criar, sente a satisfação de recortar as peças do modelo, constrói o teu modelo passo a passo, e dá os toques finais para que esteja pronto para a pintura.<br><br><strong>ferramentas</strong><br><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1164250/extras/f0cf6a048dbdd630f64006e9294e814d.avif?t=1726564095"></span><br><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1164250/extras/815ff550e6b79b5b0c5716bec6dd09e3.poster.avif?t=1726564095"></span><br><br>Tens uma grande variedade de ferramentas à disposição - tudo o que precisas é montar os teus incríveis modelos e fazê-los brilhar. Desbloqueia novas ferramentas para te ajudar com o trabalho de precisão e acabamentos. Em menos de nada irás sentir-te como um profissional.<br><br><strong>personaliza</strong><br><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1164250/extras/23ac1100741d02a66b3d14f217e5d87e.avif?t=1726564095"></span><br><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1164250/extras/5418b9e18fc3a88773d0e8f0649f8035.poster.avif?t=1726564095"></span><br><br>Agora está na hora de ser criativo! Podes optar pela via séria e seguir as indicações, mas porque não dar um toque pessoal ao modelo e personalizá-lo? Com bastantes tintas por onde escolher, usa o aerógrafo ou aplica a tinta detalhadamente e acaba um uns decalques incríveis. O limite é a tua própria criatividade.<br><br><strong>showcase</strong><br><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1164250/extras/081756db0f547094746a11c754599287.avif?t=1726564095"></span><br><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1164250/extras/ced78c13df1e2227967e1c5b8c3f71fd.poster.avif?t=1726564095"></span><br><br>Quando o teu modelo estiver concluído isso não é o fim! Podes criar uma cena no modo Cabine Fotográfica e exibir os teus modelos em cenários diferentes, adicionar efeitos fixes e fazer com que tenham ainda mais estilo! Partilha o teu trabalho diretamente através do jogo para os teus canais nas redes sociais e mostra-o a outras pessoas.
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Sword of the Necromancer - Prologue</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('eb823bb4-4f1e-4180-824e-21132b2c9af0/50f1b1a7-6b2d-4fe6-9457-20b36725703d.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="eb823bb4-4f1e-4180-824e-21132b2c9af0/080b0a2b-c9b4-4a92-b93f-a7fec398c94d.ico"/> Sword of the Necromancer - Prologue</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalhes</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="eb823bb4-4f1e-4180-824e-21132b2c9af0/d864436c-4376-4519-b7d7-3af9bade4d9b.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Tempo de jogo</TD>
+								<TD>25m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Última Atividade</TD>
+								<TD><a href="#quicklink-05/11/2020">05/11/2020</a> 12:55:57</TD>
+							</TR>
+							<TR>
+								<TD>Adicionado</TD>
+								<TD><a href="#quicklink-07/06/2026">07/06/2026</a> 0:35:52</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-07/06/2026">07/06/2026</a> 2:48:44</TD>
+							</TR>
+							<TR>
+								<TD>Status de Conclusão</TD>
+								<TD><a href="#quicklink-Jogado">Jogado</a></TD>
+							</TR>
+							<TR>
+								<TD>Biblioteca</TD>
+								<TD><a href="default_library_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Fonte</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Data de Lançamento</TD>
+								<TD><a href="#quicklink-"></a> </TD>
+							</TR>
+							<TR>
+								<TD>Pontuação da Comunidade</TD>
+								<TD><a href="#quicklink-79">79</a></TD>
+							</TR>
+							<TR>
+								<TD>Avaliação da crítica</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Pontuação do Usuário</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Gênero</TD>
+								<TD><a href="#quicklink-Ação">Ação</a><br/><a href="#quicklink-Aventura">Aventura</a><br/><a href="#quicklink-Gratuitos para Jogar">Gratuitos para Jogar</a><br/><a href="#quicklink-Indie">Indie</a><br/><a href="#quicklink-RPG">RPG</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desenvolvedor</TD>
+								<TD><a href="#quicklink-Grimorio of Games">Grimorio of Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="#quicklink-JanduSoft">JanduSoft</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Funções</TD>
+								<TD><a href="#quicklink-Compat. Total Com Controle">Compat. Total Com Controle</a><br/><a href="#quicklink-Coop. Tela Dividida/Compart.">Coop. Tela Dividida/Compart.</a><br/><a href="#quicklink-Cooperativo">Cooperativo</a><br/><a href="#quicklink-Multijogador">Multijogador</a><br/><a href="#quicklink-Nuvem">Nuvem</a><br/><a href="#quicklink-Remote Play Together">Remote Play Together</a><br/><a href="#quicklink-Tela Dividida/Compartilhada">Tela Dividida/Compartilhada</a><br/><a href="#quicklink-Um Jogador">Um Jogador</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://steamcommunity.com/app/1455590" target="_blank">Central da comunidade</a><br/><a href="https://steamcommunity.com/app/1455590/discussions/" target="_blank">Discussões</a><br/><a href="https://steamcommunity.com/app/1455590/guides/" target="_blank">Guias</a><br/><a href="https://store.steampowered.com/news/?appids=1455590" target="_blank">Notícias</a><br/><a href="https://store.steampowered.com/app/1455590" target="_blank">Página na loja</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=1455590" target="_blank">PCGamingWiki</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="#quicklink-2D">2D</a><br/><a href="#quicklink-Ação">Ação</a><br/><a href="#quicklink-Anime">Anime</a><br/><a href="#quicklink-Arcade">Arcade</a><br/><a href="#quicklink-Aventura">Aventura</a><br/><a href="#quicklink-Boa Trama">Boa Trama</a><br/><a href="#quicklink-Campanha Cooperativa">Campanha Cooperativa</a><br/><a href="#quicklink-Cooperativo">Cooperativo</a><br/><a href="#quicklink-Cooperativo Local">Cooperativo Local</a><br/><a href="#quicklink-Explorador de Calabouços">Explorador de Calabouços</a><br/><a href="#quicklink-Fantasia">Fantasia</a><br/><a href="#quicklink-Geração Procedural">Geração Procedural</a><br/><a href="#quicklink-Gráficos Pixelados">Gráficos Pixelados</a><br/><a href="#quicklink-Gratuito para Jogar">Gratuito para Jogar</a><br/><a href="#quicklink-LGBTQIA+">LGBTQIA+</a><br/><a href="#quicklink-Roguelike">Roguelike</a><br/><a href="#quicklink-Roguelike de Ação">Roguelike de Ação</a><br/><a href="#quicklink-Roguelite">Roguelite</a><br/><a href="#quicklink-RPG">RPG</a><br/><a href="#quicklink-RPG de Ação">RPG de Ação</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descri&#231;&#227;o</H3>
+				</div>
+				<div class="description">
+					<strong>What would you do to bring back someone you love?</strong><br><br><i>Sword of the Necromancer</i> is a dungeon-crawler <strong>action RPG</strong> with <strong>Rogue-like</strong> elements where you can revive your defeated enemies to make them fight alongside you.<br><br><strong>Turn your foes into allies</strong> using the forbidden powers of the Sword of the Necromancer and help Tama reach the dungeon's depths in order to gain enough power to <strong>bring Koko back from the dead</strong>.<br><br>Gather a little army of monsters, equip yourself with weapons and relics and level up to take on the guardians that stand between you and your objective.<br><br><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1455590/extras/db17b5dd851d44e39305c6c8a3490d44.avif?t=1726466616"></span><br><br><ul class="bb_ul"><li><strong>Turn your foes into allies:</strong> use the Sword of the Necromancer to revive defeated monsters and make them fight alongside you.<br></li><li><strong>Gather weapons and relics:</strong> each weapon is different from the others thanks to the procedural  weapon generation system, which gives them various effects and attributes.<br></li><li><strong>Fight with all your might:</strong> defeat your enemies using a variety of weapons and objects and dominating the fluid head-to-head battle system.<br></li><li><strong>Level up:</strong> enhance your character by fighting enemies and upgrade your stats. Improve your summoned monsters by fighting alongside them.<br></li><li><strong>Death is not the end:</strong> Each try gets you closer to the Necromancer. You will lose all your equipped weapons and monsters, but you will retain half the level you achieved in your run. Also, you can choose to exit the dungeon at some moments, losing all your level progress but maintaining all your  equipment.<br></li><li><strong>Learn the truth:</strong> Discover Tama and Koko's past as you advance through the dungeon.<br></li><li><strong>Local co-op play:</strong> Use the Flask of Homunculus to create a copy of the playable character and play with a friend in local co-op game.</li></ul><br><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1455590/extras/c6f406ec649e1b9b672ac253f80256c1.avif?t=1726466616"></span><br><br>"<i>Legend says that, deep within these mountains, a heretic decided to violate the will of the gods in order to achieve eternal life.<br><br>The heretic succeeded in this aberrant attempt, and created a tool for forbidden rituals that could grant immortality… and even bring back the dead.<br><br>Over the years and centuries many have tried to get that power for themselves, but all they found in the Necromancer’s crypt was their demise.<br><br>They say that the tool the Necromancer created is also a weapon…<br><br>The Sword of the Necromancer</i>”<br><br><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1455590/extras/c75c6d5a161b4f8d1ae3cd4c1d71b7bc.avif?t=1726466616"></span><br><br><strong>Tama</strong> is a former rogue that is tasked to escort the priestess <strong>Koko</strong> in her <strong>pilgrimage</strong> around the continent. <strong>During their travel Koko dies</strong>, and Tama carries the corpse to the Necromancer's crypt, where legends say there dwells a power that may <strong>resurrect the dead</strong>.<br><br>Filled with despair, Tama will enter the dungeon with the aim of obtaining the <strong>forbidden power of necromancy</strong>, ignoring the dangers that lurk in the shadows.
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

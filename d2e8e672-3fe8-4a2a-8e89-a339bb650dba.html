@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Homeworld Remastered Collection</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('d2e8e672-3fe8-4a2a-8e89-a339bb650dba/882a96e9-e0e4-4464-90c1-06d517590e07.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="d2e8e672-3fe8-4a2a-8e89-a339bb650dba/308f7421-00ab-44b1-81ab-25fcf26d4333.ico"/> Homeworld Remastered Collection</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalhes</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="d2e8e672-3fe8-4a2a-8e89-a339bb650dba/dd197a27-7db0-4e81-a702-d7ff13c85a8e.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Tempo de jogo</TD>
+								<TD>N&#227;o Jogado</TD>
+							</TR>
+							<TR>
+								<TD>Última Atividade</TD>
+								<TD><a href="#quicklink-Nunca">Nunca</a> </TD>
+							</TR>
+							<TR>
+								<TD>Adicionado</TD>
+								<TD><a href="#quicklink-07/06/2026">07/06/2026</a> 0:35:37</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-07/06/2026">07/06/2026</a> 2:47:11</TD>
+							</TR>
+							<TR>
+								<TD>Status de Conclusão</TD>
+								<TD><a href="#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Biblioteca</TD>
+								<TD><a href="default_library_ascendente_name_ascendente.html#quicklink-Epic">Epic</a></TD>
+							</TR>
+							<TR>
+								<TD>Fonte</TD>
+								<TD><a href="#quicklink-Epic">Epic</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Data de Lançamento</TD>
+								<TD><a href="#quicklink-"></a> </TD>
+							</TR>
+							<TR>
+								<TD>Pontuação da Comunidade</TD>
+								<TD><a href="#quicklink-86">86</a></TD>
+							</TR>
+							<TR>
+								<TD>Avaliação da crítica</TD>
+								<TD><a href="#quicklink-86">86</a></TD>
+							</TR>
+							<TR>
+								<TD>Pontuação do Usuário</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Gênero</TD>
+								<TD><a href="#quicklink-Estratégia">Estratégia</a><br/><a href="#quicklink-Simulação">Simulação</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desenvolvedor</TD>
+								<TD><a href="#quicklink-Aspyr (Mac)">Aspyr (Mac)</a><br/><a href="#quicklink-Gearbox Software">Gearbox Software</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="#quicklink-Aspyr (Mac)">Aspyr (Mac)</a><br/><a href="#quicklink-Gearbox Publishing">Gearbox Publishing</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Funções</TD>
+								<TD><a href="#quicklink-Compartilhamento Em Família">Compartilhamento Em Família</a><br/><a href="#quicklink-Conforto De Câmera">Conforto De Câmera</a><br/><a href="#quicklink-Conquistas">Conquistas</a><br/><a href="#quicklink-Controles De Volume Independentes">Controles De Volume Independentes</a><br/><a href="#quicklink-Multijogador">Multijogador</a><br/><a href="#quicklink-Nuvem">Nuvem</a><br/><a href="#quicklink-Oficina">Oficina</a><br/><a href="#quicklink-Salvamento A Qualquer Momento">Salvamento A Qualquer Momento</a><br/><a href="#quicklink-Texto De Tamanho Ajustável">Texto De Tamanho Ajustável</a><br/><a href="#quicklink-Um Jogador">Um Jogador</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://steamcommunity.com/app/244160" target="_blank">Central da comunidade</a><br/><a href="https://steamcommunity.com/app/244160/discussions/" target="_blank">Discussões</a><br/><a href="https://steamcommunity.com/app/244160/guides/" target="_blank">Guias</a><br/><a href="https://store.steampowered.com/news/?appids=244160" target="_blank">Notícias</a><br/><a href="https://store.steampowered.com/app/244160" target="_blank">Página na loja</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=244160" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/stats/244160/achievements" target="_blank">Conquistas</a><br/><a href="https://steamcommunity.com/app/244160/workshop/" target="_blank">Oficina</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="#quicklink-4X">4X</a><br/><a href="#quicklink-Ação">Ação</a><br/><a href="#quicklink-Atmosférico">Atmosférico</a><br/><a href="#quicklink-Aventura">Aventura</a><br/><a href="#quicklink-Boa Trama">Boa Trama</a><br/><a href="#quicklink-Clássico">Clássico</a><br/><a href="#quicklink-Compatível com Mods">Compatível com Mods</a><br/><a href="#quicklink-Épico">Épico</a><br/><a href="#quicklink-Espacial">Espacial</a><br/><a href="#quicklink-Estratégia">Estratégia</a><br/><a href="#quicklink-Estratégia em Tempo Real (RTS)">Estratégia em Tempo Real (RTS)</a><br/><a href="#quicklink-Ficção Científica">Ficção Científica</a><br/><a href="#quicklink-Futurista">Futurista</a><br/><a href="#quicklink-Multijogador">Multijogador</a><br/><a href="#quicklink-Protagonista Mulher">Protagonista Mulher</a><br/><a href="#quicklink-Remake">Remake</a><br/><a href="#quicklink-Simulação">Simulação</a><br/><a href="#quicklink-Tático">Tático</a><br/><a href="#quicklink-Trilha Sonora Boa">Trilha Sonora Boa</a><br/><a href="#quicklink-Um Jogador">Um Jogador</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descri&#231;&#227;o</H3>
+				</div>
+				<div class="description">
+					<strong>The Homeworld Remastered Collection includes</strong>:<br><ul class="bb_ul"><li>Homeworld Remastered Edition<br></li><li>Homeworld 2 Remastered Edition<br></li><li>Homeworld Remastered Steam Multiplayer</li></ul><br><strong>As a bonus, you will also receive free access to:</strong><br><ul class="bb_ul"><li>Homeworld Classic<br></li><li>Homeworld 2 Classic</li></ul><br>Experience the epic space strategy games that redefined the RTS genre. Control your fleet and build an armada across more than 30 single-player missions. Choose unit types, fleet formations and flight tactics for each strategic situation. Utilize advanced research to construct ships ranging from light fighters to huge carriers and everything in between.<br><br>The Homeworld games have been painstakingly re-mastered with key members of the original development team and taking critical influence and assistance from the passionate fan community. The Homeworld Remastered Collection introduces Relic's acclaimed space strategy games Homeworld and Homeworld 2 to modern players and operating systems using the newest sophisticated graphics rendering technology, plus a fully remastered score and new, high fidelity voice recordings by the original actors.<br><br>As a free bonus, this collection also includes original, non-remastered versions of Homeworld Classic and Homeworld 2 Classic, preserving the purest form of the original releases with compatibility for modern operating systems.<br><br>Homeworld Remastered Collection also provides access to the Homeworld Remastered Steam Multiplayer. The competitive multiplayer modes for both Homeworld and Homeworld 2 have been combined into one centralized mode that will allow you access to content (races, maps and game modes) and improvements, features and technology from both games, allowing you to play unlimited competitive multiplayer space battles on an epic scale.<h2 class="bb_tag">Key Features:</h2><ul class="bb_ul"><li>Build and battle with more than 100 space ships<br></li><li>Updated high-res textures and models<br></li><li>New graphical effects<br></li><li>Support for HD, UHD, and 4K resolutions<br></li><li>New audio mix using original source effects and music<br></li><li>Cinematic scenes recreated in beautiful high fidelity by original artists<br></li><li>Mod support and mod tools<br></li><li>Bonus archival versions of Homeworld Classic and Homeworld 2 classic, preserving the purest form of the original releases with compatibility for modern operating systems<br></li><li>•	Access to Homeworld Remastered Steam Multiplayer: play Homeworld races against Homeworld 2 races with up to eight players on 23 maps, plus brand new game modes</li></ul>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

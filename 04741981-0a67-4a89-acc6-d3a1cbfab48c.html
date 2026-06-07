@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Mirror&#39;s Edge Catalyst</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('04741981-0a67-4a89-acc6-d3a1cbfab48c/18387232-230e-499a-aece-416a06d0e94d.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="04741981-0a67-4a89-acc6-d3a1cbfab48c/87d4b566-b8d3-4d10-aa75-6246c9a53272.ico"/> Mirror&#39;s Edge Catalyst</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalhes</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="04741981-0a67-4a89-acc6-d3a1cbfab48c/5e95de9a-1e76-487d-8a9e-0573a0f6cb08.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Tempo de jogo</TD>
+								<TD>4h 56m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Última Atividade</TD>
+								<TD><a href="#quicklink-18/05/2023">18/05/2023</a> 21:36:57</TD>
+							</TR>
+							<TR>
+								<TD>Adicionado</TD>
+								<TD><a href="#quicklink-07/06/2026">07/06/2026</a> 0:35:52</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-07/06/2026">07/06/2026</a> 0:46:26</TD>
+							</TR>
+							<TR>
+								<TD>Status de Conclusão</TD>
+								<TD><a href="#quicklink-Jogado">Jogado</a></TD>
+							</TR>
+							<TR>
+								<TD>Biblioteca</TD>
+								<TD><a href="default_library_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Fonte</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Data de Lançamento</TD>
+								<TD><a href="#quicklink-07/06/2016">07/06/2016</a> </TD>
+							</TR>
+							<TR>
+								<TD>Pontuação da Comunidade</TD>
+								<TD><a href="#quicklink-70">70</a></TD>
+							</TR>
+							<TR>
+								<TD>Avaliação da crítica</TD>
+								<TD><a href="#quicklink-69">69</a></TD>
+							</TR>
+							<TR>
+								<TD>Pontuação do Usuário</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Gênero</TD>
+								<TD><a href="#quicklink-Adventure">Adventure</a><br/><a href="#quicklink-Platform">Platform</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desenvolvedor</TD>
+								<TD><a href="#quicklink-EA Digital Illusions CE">EA Digital Illusions CE</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="#quicklink-Electronic Arts">Electronic Arts</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Funções</TD>
+								<TD><a href="#quicklink-Multiplayer">Multiplayer</a><br/><a href="#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="http://www.mirrorsedge.com" target="_blank">Official Website</a><br/><a href="https://twitter.com/mirrorsedge" target="_blank">Twitter</a><br/><a href="https://www.facebook.com/mirrorsedge" target="_blank">Facebook</a><br/><a href="https://en.wikipedia.org/wiki/Mirror%27s_Edge_Catalyst" target="_blank">Wikipedia</a><br/><a href="https://store.steampowered.com/app/1233570/Mirrors_Edge_Catalyst/?curator_clanid=36135791" target="_blank">Steam</a><br/><a href="https://www.twitch.tv/directory/game/Mirror's%20Edge%20Catalyst" target="_blank">Twitch</a><br/><a href="https://www.reddit.com/r/mirrorsedge/" target="_blank">Subreddit</a><br/><a href="https://mirrorsedge.fandom.com/wiki/Mirror%27s_Edge_Catalyst" target="_blank">Community Wiki</a><br/><a href="https://store.playstation.com/en-us/concept/209177" target="_blank">Playstation</a><br/><a href="https://www.xbox.com/en-us/games/store/mirror's-edge-catalyst/C48LBRJJCP2L" target="_blank">Xbox</a><br/><a href="https://store.epicgames.com/en-US/p/mirrors-edge-catalyst-aa7791" target="_blank">Epic</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descri&#231;&#227;o</H3>
+				</div>
+				<div class="description">
+					OS RECURSOS ONLINE DESTE TÍTULO FORAM ENCERRADOS.<br><br>Siga Faith, uma ousada corredora livre, na luta por liberdade na cidade de Glass. O que por fora parece ser uma metrópole elegante e tecnológica guarda um segredo terrível nas suas entranhas. Explore cada canto, dos telhados bem-iluminados de arranha-céus aos túneis escuros do subterrâneo. A cidade é enorme e pode ser explorada livremente, com Faith no centro de tudo. Por meio da perspectiva em primeira pessoa, combine os movimentos ágeis e as habilidades avançadas de combate de Faith para dominar o ambiente da cidade e desvendar a conspiração.<br><br><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1233570/extras/ff74cfd1ea23ac5875662856f75c5822.avif?t=1777486496"></span><br><br><strong>TRANSVERSAL</strong><br>Atinja a velocidade máxima ao descer rapidamente de tirolesa. Equilibre-se em canos, pendure-se e escale, alternando as mãos, por baixo de um obstáculo. Corra verticalmente e horizontalmente em qualquer parede e use o ambiente para balançar em cantos ou atravessar fendas.<br><br><strong>FOCO</strong><br>Rápida, leve e ágil, Faith precisa manter o foco e usar seus movimentos para sobreviver. O Foco é obtido ao correr livremente, e quando Faith tem Foco, inimigos não podem acertá-la. Como ela perde foco quando está em baixa velocidade ou é atacada, é essencial manter o equilíbrio entre desviar de adversários e enfrentá-los diretamente.<br><br><strong>IMPULSO</strong><br>Ganhe impulso para fazer saltos ousados entre telhados ou escorregar com estilo por espaços apertados. Use o novo movimento Desviar para ganhar um pequeno impulso de aceleração em qualquer direção. Para uma rápida mudança de planos, altere a direção com Virar Rápido para dar uma volta de 180 ou 90 graus.<br><br><strong>COMBATE</strong><br>Realize ataques fortes transversais devastadores, jogando adversários contra paredes, sobre grades e contra os outros. Use o impulso para passar pela KrugerSec, combinando uma série de ataques leves transversais, ganhando foco e mantendo a velocidade. Engane adversários, desviando para trás e dando um chute nas costas deles. Também é possível desorientar adversários com socos rápidos e desviar para longe do perigo, evitando um revide ou contra-ataque.<br><br><strong>DISPOSITIVOS</strong><br>As habilidades de corrida, o conhecimento de artes marciais e a determinação de Faith são ampliados com equipamentos usados para atravessar a cidade e combater a opressão que afeta o povo de Glass.<br><br><strong>CORRIDAS E CONTRA O RELÓGIO</strong><br>Você consegue correr mais rápido que todo mundo na cidade de Glass? Crie as próprias corridas Contra o Relógio e compartilhe-as com amizades. Você também pode encarar Corridas desafiadoras criadas pela DICE e buscar a melhor rota possível usando seus movimentos fluidos. Para uma emocionante caça ao tesouro na cidade, posicione um geoBeat em um lugar difícil de alcançar para que suas amizades tentem encontrar.
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

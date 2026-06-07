@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Pathfinder: Wrath of the Righteous - Enhanced Edition</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('19a502cb-a655-48cd-b6db-ab6740f66653/cc5a1108-e65a-4449-95d4-06295c41c828.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="19a502cb-a655-48cd-b6db-ab6740f66653/cd1a8f84-8ff5-417e-b193-3744ca725c99.ico"/> Pathfinder: Wrath of the Righteous - Enhanced Edition</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalhes</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="19a502cb-a655-48cd-b6db-ab6740f66653/5cc3f639-8573-491a-a64f-d555f9633164.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Tempo de jogo</TD>
+								<TD>1h 0m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Última Atividade</TD>
+								<TD><a href="#quicklink-01/04/2025">01/04/2025</a> 20:27:21</TD>
+							</TR>
+							<TR>
+								<TD>Adicionado</TD>
+								<TD><a href="#quicklink-07/06/2026">07/06/2026</a> 0:35:52</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-07/06/2026">07/06/2026</a> 0:39:30</TD>
+							</TR>
+							<TR>
+								<TD>Status de Conclusão</TD>
+								<TD><a href="#quicklink-Jogado">Jogado</a></TD>
+							</TR>
+							<TR>
+								<TD>Biblioteca</TD>
+								<TD><a href="default_library_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Fonte</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Data de Lançamento</TD>
+								<TD><a href="#quicklink-02/09/2021">02/09/2021</a> </TD>
+							</TR>
+							<TR>
+								<TD>Pontuação da Comunidade</TD>
+								<TD><a href="#quicklink-90">90</a></TD>
+							</TR>
+							<TR>
+								<TD>Avaliação da crítica</TD>
+								<TD><a href="#quicklink-85">85</a></TD>
+							</TR>
+							<TR>
+								<TD>Pontuação do Usuário</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Gênero</TD>
+								<TD><a href="#quicklink-Adventure">Adventure</a><br/><a href="#quicklink-Indie">Indie</a><br/><a href="#quicklink-Role-playing (RPG)">Role-playing (RPG)</a><br/><a href="#quicklink-Strategy">Strategy</a><br/><a href="#quicklink-Tactical">Tactical</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desenvolvedor</TD>
+								<TD><a href="#quicklink-Owlcat Games">Owlcat Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="#quicklink-META Publishing">META Publishing</a><br/><a href="#quicklink-Owlcat Games">Owlcat Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Funções</TD>
+								<TD><a href="#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://wrath.owlcatgames.com/" target="_blank">Official Website</a><br/><a href="https://twitter.com/OwlcatGames" target="_blank">Twitter</a><br/><a href="https://store.steampowered.com/app/1184370/Pathfinder_Wrath_of_the_Righteous" target="_blank">Steam</a><br/><a href="https://www.gog.com/game/pathfinder_wrath_of_the_righteous" target="_blank">GOG</a><br/><a href="https://www.epicgames.com/store/en-US/p/pathfinder-wrath-of-the-righteous" target="_blank">Epic</a><br/><a href="https://www.youtube.com/channel/UCo1yuqm85x6iyko4dKhZPiA" target="_blank">YouTube</a><br/><a href="https://discord.com/invite/syqGPZH" target="_blank">Discord</a><br/><a href="https://www.facebook.com/PathfinderCRPG" target="_blank">Facebook</a><br/><a href="https://old.reddit.com/r/Pathfinder_Kingmaker" target="_blank">Subreddit</a><br/><a href="https://en.wikipedia.org/wiki/Pathfinder:_Wrath_of_the_Righteous" target="_blank">Wikipedia</a><br/><a href="https://www.twitch.tv/directory/game/Pathfinder%3A%20Wrath%20of%20the%20Righteous" target="_blank">Twitch</a><br/><a href="https://www.nintendo.com/store/products/pathfinder-wrath-of-the-righteous-switch/" target="_blank">Nintendo</a><br/><a href="https://store.playstation.com/en-us/concept/10003238" target="_blank">Playstation</a><br/><a href="https://www.instagram.com/owlcat_games/?hl=en" target="_blank">Instagram</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descri&#231;&#227;o</H3>
+				</div>
+				<div class="description">
+					<h2 class="bb_tag">DESCUBRA A HISTÓRIA</h2><p class="bb_paragraph">Seu caminho levará você à Ferida do Mundo, onde a abertura de uma fenda para o Abismo desencadeou um terror avassalador por toda a terra. Por mais de um século, as nações vizinhas lutaram bravamente para repelir o inimigo — mas sem sucesso.  </p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1184370/extras/0446a1b36bb18dd6e469a8ba87c8d694.poster.avif?t=1779177424"></span> </p><p class="bb_paragraph"> </p><p class="bb_paragraph"> </p><p class="bb_paragraph">Agora, você tem a chance de pôr fim a esse conflito, mas o caminho para a salvação está longe de ser simples. Você se tornará um anjo radiante, apoiado por nobres paladinos? Ou um poderoso necromante, com hordas de mortos-vivos imortais sob seu comando? Ou algo completamente diferente? Lidere seu exército e desafie os poderosos lordes demônios. Sua cruzada desencadeará uma série de eventos que mudarão você — e o próprio mundo — para sempre. </p><p class="bb_paragraph"> </p><h2 class="bb_tag">JOGUE COM SEU HERÓI, DO SEU JEITO</h2><p class="bb_paragraph">Crie qualquer personagem imaginável com a flexibilidade, a riqueza e a profundidade do conjunto de regras da Primeira Edição de Pathfinder. Escolha entre 25 classes, 12 raças de personagens e mais de mil magias, talentos e habilidades para se adequar ao seu próprio estilo de jogo. </p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1184370/extras/6bd3265d35872b41ec8cb7063b3b8ada.poster.avif?t=1779177424"></span> </p><p class="bb_paragraph"> </p><p class="bb_paragraph"> </p><h2 class="bb_tag">PARA CADA ESCOLHA, UMA CONSEQUÊNCIA</h2><p class="bb_paragraph">Suas decisões têm mais peso do que nunca. Seu objetivo é claro, mas você deve traçar seu próprio caminho para alcançá-lo. Quem morrerá e quem viverá? Quem ficará e quem partirá? Faça suas escolhas e observe o mundo ao seu redor mudar. </p><p class="bb_paragraph"> </p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1184370/extras/f460b59bf6b91166f372e4f0c6dd762d.poster.avif?t=1779177424"></span> </p><p class="bb_paragraph"> </p><h2 class="bb_tag">UMA NOVA MANEIRA DE LUTAR</h2><p class="bb_paragraph">Desfrute de dois modos de combate enquanto enfrenta seus inimigos — em tempo real com pausa ou por turnos. Alterne entre eles a qualquer momento para jogar no ritmo que preferir, seja mais devagar ou mais rápido. O conjunto de regras exclusivas de Pathfinder também permite que você execute manobras de combate avançadas, como combates montados. Use-as com sabedoria! </p><p class="bb_paragraph"> </p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1184370/extras/58e4b899102d3ec1779112f70fc05893.poster.avif?t=1779177424"></span> </p><h2 class="bb_tag">REÚNA SEU GRUPO</h2><p class="bb_paragraph">São mais de 10 companheiros exclusivos dispostos a se juntar à sua causa. Conquiste a confiança e o respeito deles, e eles ajudarão você, independentemente dos perigos que o aguardam. Mas, se você os decepcionar, bem… talvez seja melhor cada um seguir o seu caminho.  </p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1184370/extras/cc95c15c50f9c425992ca1457afb9025.poster.avif?t=1779177424"></span> </p><p class="bb_paragraph"> </p><p class="bb_paragraph"> </p><h2 class="bb_tag">LIDERE A CRUZADA</h2><p class="bb_paragraph">Você precisará de muito mais do que um grupo de aventureiros para livrar a terra de sua praga demoníaca. Assuma o comando dos cruzados e lidere-os até a vitória — tanto como estrategista, controlando a batalha do alto, quanto como comandante de campo, em um novo modo de combate tático. </p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1184370/extras/798e4b12d82fd4bdf422189ea7ce43d3.poster.avif?t=1779177424"></span> </p><p class="bb_paragraph"> </p><h2 class="bb_tag">ESCOLHA SEU CAMINHO</h2><p class="bb_paragraph">Explore nove Caminhos Míticos exclusivos: obtenha habilidades extraordinárias e molde tudo o que está por vir. Suas decisões podem transformá-lo em um Anjo celestial, um Demônio furioso, um Lich poderoso, um Mistificador ardiloso, um Éon sobrenatural, um Azata rebelde, um Dragão de Ouro sábio, um Enxame que Caminha insaciável — ou você pode continuar sendo um mortal e trilhar o árduo caminho para se tornar uma Lenda viva. </p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1184370/extras/2c2dc0fe4c0bc8b60069ea6d33f799d5.poster.avif?t=1779177424"></span> </p><p class="bb_paragraph"> </p><p class="bb_paragraph"></p>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

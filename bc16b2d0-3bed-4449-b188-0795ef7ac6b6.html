@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>ARK: Survival Of The Fittest</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('bc16b2d0-3bed-4449-b188-0795ef7ac6b6/c566303b-817d-42ba-b38c-33bc7f7278e8.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="bc16b2d0-3bed-4449-b188-0795ef7ac6b6/2f7b9d10-2387-4f3d-8ef8-c4a7e37c2b59.ico"/> ARK: Survival Of The Fittest</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalhes</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="bc16b2d0-3bed-4449-b188-0795ef7ac6b6/65a41181-9b4d-45c3-80f6-a55ea34ff864.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Tempo de jogo</TD>
+								<TD>N&#227;o Jogado</TD>
+							</TR>
+							<TR>
+								<TD>Última Atividade</TD>
+								<TD><a href="#quicklink-Nunca">Nunca</a> </TD>
+							</TR>
+							<TR>
+								<TD>Adicionado</TD>
+								<TD><a href="#quicklink-07/06/2026">07/06/2026</a> 0:35:51</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-07/06/2026">07/06/2026</a> 2:31:09</TD>
+							</TR>
+							<TR>
+								<TD>Status de Conclusão</TD>
+								<TD><a href="#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Biblioteca</TD>
+								<TD><a href="default_library_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Fonte</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Data de Lançamento</TD>
+								<TD><a href="#quicklink-15/03/2016">15/03/2016</a> </TD>
+							</TR>
+							<TR>
+								<TD>Pontuação da Comunidade</TD>
+								<TD><a href="#quicklink-15">15</a></TD>
+							</TR>
+							<TR>
+								<TD>Avaliação da crítica</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Pontuação do Usuário</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Gênero</TD>
+								<TD><a href="#quicklink-Adventure">Adventure</a><br/><a href="#quicklink-Indie">Indie</a><br/><a href="#quicklink-Role-playing (RPG)">Role-playing (RPG)</a><br/><a href="#quicklink-Shooter">Shooter</a><br/><a href="#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desenvolvedor</TD>
+								<TD><a href="#quicklink-Efecto Studios">Efecto Studios</a><br/><a href="#quicklink-Instinct Games">Instinct Games</a><br/><a href="#quicklink-Studio Wildcard">Studio Wildcard</a><br/><a href="#quicklink-Virtual Basement LLC">Virtual Basement LLC</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="#quicklink-Studio Wildcard">Studio Wildcard</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Funções</TD>
+								<TD><a href="#quicklink-Co-Operative">Co-Operative</a><br/><a href="#quicklink-Massively Multiplayer Online (MMO)">Massively Multiplayer Online (MMO)</a><br/><a href="#quicklink-Multiplayer">Multiplayer</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://store.steampowered.com/app/407530" target="_blank">Steam</a><br/><a href="http://www.playark.com" target="_blank">Official Website</a><br/><a href="https://www.twitch.tv/directory/game/Ark:%20Survival%20Of%20The%20Fittest" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descri&#231;&#227;o</H3>
+				</div>
+				<div class="description">
+					Arca: A sobrevivência do mais apto é um protótipo spin-off de arca: a sobrevivência evoluiu, colocando até 60 combatentes um contra o outro em uma luta de ritmo acelerado e cheia de ação pela sobrevivência, onde os jogadores são finalmente empurrados para um confronto final Liderando seus exércitos de dinossauros à batalha. O Ark Tsotf é o único Battle Royale que se concentra em confrontos em larga escala, combinados com uma sobreposição única de estratégia em tempo real. Ao usar táticas e estratégia para montar uma força de luta das criaturas primárias mais poderosas da história, apenas uma tribo sobreviverá!<br><br>Faça sua tribo e lute na melhor batalha do Dino Survival! Projetados para intensa concorrência e ação de dino em ritmo acelerado, os sobreviventes começam sua partida em um lobby de céu com tek-imbued para tribo. Quando a batalha começar, eles voam em direção a uma ilha a bordo de um quetzal gigante antes de ejetar e deslizar para a área de partida escolhida. Os concorrentes correm para gotas e lutarem? Eles correm para a selva e se escondem, procuram criaturas para domar e construir rapidamente seu exército de dino, ou morrem para um bando de compys curiosos? Faça uso do modo de vista para os pássaros, que permite que você comanda com mais eficácia-e controlem seu exército de dinossauros, possuam diretamente criaturas atualizáveis ​​individuais e emitem comandos para sua equipe como estrategista final. Esta experiência exclusiva no estilo RTS está disponível na vida e também após a morte! Evite o “anel da morte” de encolhimento e dinâmico continuamente que força os competidores cada vez mais próximos ao longo do tempo e se torne a última tribo em pé. A caça está ligada!<br><br>Observação: esta versão atualmente é apenas um protótipo para testar a nova jogabilidade e os recursos-ainda não é um jogo competitivo totalmente completo. No entanto, incentivamos todos os sobreviventes a jogar e nos fornecer feedback para ajudar a desenvolver ainda mais e crescer o TSOTF!<br><br>Embora o objetivo principal da sobrevivência do mais apto permaneça o mesmo, voltamos à prancheta e introduzimos um número significativo de mudanças técnicas/de qualidade de vida/equilíbrio no modo de jogo que difere da arca: a sobrevivência evoluiu e o Versão original da sobrevivência do mais apto. Essas mudanças visam tornar a experiência mais simplificada e acessível, eliminando os aspectos complexos da elaboração e da curva de aprendizado acentuados e capacitando os jogadores a formar rapidamente seus exércitos dino e chegar à ação da criatura mais rapidamente.<br><br><ul class="bb_ul"><li>Arca reformulou do zero, concentrando-se em jogabilidade em ritmo acelerado e combate intenso em torno de batalhas de criatura em larga escala<br></li><li>88 dinossauros e criaturas no lançamento!<br></li><li>Uma versão simplificada da ilha da Arca: a sobrevivência evoluiu<br></li><li>Modos de jogo solo e baseados em tribo<br></li><li>Revista a experiência da UI/UX para comunicar apenas o que é essencial e amigável para gamepad.<br></li><li>O gerenciamento de inventário foi completamente removido para uma experiência de jogabilidade mais simples e rápida.<br></li><li>Design focado em saques-A colheita foi removida e substituída por caixas de suprimentos baseadas em camadas, onde os itens são recompensados ​​a todos os membros da sua tribo ou matando dinos por seus próprios recursos adicionais.<br></li><li>Armas e armaduras foram modificadas e reequilibradas para a melhor experiência de ritmo acelerado e progressão sem complicações.<br></li><li>Novo sistema de tempo: mate criaturas para tokens e depois gaste esses tokens em domar novos selvagens ou roubar famosos de seus inimigos!<br></li><li>Modo de comandante. Um modo de vista para os pássaros que pode ser inserido a qualquer momento do jogo, permitindo que você controle seu exército de dinossauros (estilo RTS) com mais eficiência, possui diretamente criaturas individuais no seu arsenal e emitem comandos para sua equipe como o Ultimate estrategista (incluindo uma névoa de guerra acionada por Ally). Assim, depois que um jogador morreu, ele ainda pode participar da partida como comandante e continuar a controlar e possuir o dinossauro da equipe - eles podem continuar jogando e beneficiando seu time! Uma equipe só é totalmente derrotada quando tiveram todos os seus jogadores e seus dinossauros destruídos.<br></li><li>Sistema de camadas de dino - Os dinos são recompensados ​​por suas mortes com a EXP para avançar para um novo nível, proporcionando benefícios estatísticos fixos e eliminando o RNG no nível de dino.<br></li><li>“Anel de morte” dinâmico exclusivo para cada rodada, permitindo uma jogabilidade emergente e vantagens imprevisíveis<br></li><li>Um sistema de ping de pings inteligente para ajudar a se comunicar dentro das equipes<br></li><li>Os ""banners de guerra"" pintados personalizados permitem que as tribos mostrem seu espírito de equipe em bandeiras em seu exército de dinossauros!<br></li><li>Invocar chefes da arca para fortalecer seu arsenal nesta experiência final do exército de dino dino<br></li><li>Uma trilha sonora personalizada orquestrada ao vivo foi escrita pelo premiado compositor Gareth Coker de Ori e The Blind Forest and Ark: The Animated Series.</li></ul>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

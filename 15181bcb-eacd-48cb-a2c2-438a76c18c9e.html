@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Fantasy Strike</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('15181bcb-eacd-48cb-a2c2-438a76c18c9e/2ad29e44-0d28-481f-acab-38b76bb8999c.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="15181bcb-eacd-48cb-a2c2-438a76c18c9e/1871183d-befd-4131-8979-5846cae270b9.ico"/> Fantasy Strike</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalhes</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="15181bcb-eacd-48cb-a2c2-438a76c18c9e/ac65fae0-edf1-4e94-9a0d-281abdf88aae.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Tempo de jogo</TD>
+								<TD>N&#227;o Jogado</TD>
+							</TR>
+							<TR>
+								<TD>Última Atividade</TD>
+								<TD><a href="#quicklink-Nunca">Nunca</a> </TD>
+							</TR>
+							<TR>
+								<TD>Adicionado</TD>
+								<TD><a href="#quicklink-07/06/2026">07/06/2026</a> 0:35:52</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-07/06/2026">07/06/2026</a> 0:39:07</TD>
+							</TR>
+							<TR>
+								<TD>Status de Conclusão</TD>
+								<TD><a href="#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Biblioteca</TD>
+								<TD><a href="default_library_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Fonte</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Data de Lançamento</TD>
+								<TD><a href="#quicklink-14/09/2017">14/09/2017</a> </TD>
+							</TR>
+							<TR>
+								<TD>Pontuação da Comunidade</TD>
+								<TD><a href="#quicklink-51">51</a></TD>
+							</TR>
+							<TR>
+								<TD>Avaliação da crítica</TD>
+								<TD><a href="#quicklink-65">65</a></TD>
+							</TR>
+							<TR>
+								<TD>Pontuação do Usuário</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Gênero</TD>
+								<TD><a href="#quicklink-Fighting">Fighting</a><br/><a href="#quicklink-Indie">Indie</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desenvolvedor</TD>
+								<TD><a href="#quicklink-Sirlin Games">Sirlin Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="#quicklink-Sirlin Games">Sirlin Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Funções</TD>
+								<TD><a href="#quicklink-Multiplayer">Multiplayer</a><br/><a href="#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="http://www.fantasystrike.com/" target="_blank">Official Website</a><br/><a href="https://store.steampowered.com/app/390560" target="_blank">Steam</a><br/><a href="https://www.facebook.com/FantasyStrike" target="_blank">Facebook</a><br/><a href="https://twitter.com/FantasyStrike" target="_blank">Twitter</a><br/><a href="https://www.youtube.com/FantasyStrike" target="_blank">YouTube</a><br/><a href="https://www.reddit.com/r/FantasyStrike" target="_blank">Subreddit</a><br/><a href="https://en.wikipedia.org/wiki/Fantasy_Strike" target="_blank">Wikipedia</a><br/><a href="https://www.twitch.tv/directory/game/Fantasy%20Strike" target="_blank">Twitch</a><br/><a href="https://www.nintendo.com/games/detail/fantasy-strike-switch/" target="_blank">Nintendo</a><br/><a href="https://store.playstation.com/en-us/concept/233566" target="_blank">Playstation</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descri&#231;&#227;o</H3>
+				</div>
+				<div class="description">
+					<strong>Grátis para Jogar</strong>, da melhor forma, como DOTA2: Jogue <strong>com todos os personagens</strong> sem grind ou desbloqueios!<br>Modos F2P: Online Casual Versus, Ranqueado Online Versus, Modo Treino, Partida contra AI<br><br>Seja uma arqueira com flechas de fogo, uma pintora colorida, um mestre de artes marciais que pode se transformar em um Dragão, e mais! Fantasia se encontra com artes marciais neste mundo vibrante!<br><br><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/390560/extras/cdca0edaf305841f46521f529b38481d.poster.avif?t=1776975922"></span><br><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/390560/extras/a03330be5f616d2b5eca1db7afa396e3.avif?t=1776975922"></span><h2 class="bb_tag">Se Você é Novo em Jogos de Luta</h2>Desenvolvido para funcionar bem com teclado, sem necessitar de um controle especial. Nós simplificamos o genêro para te levar mais rápido para a diversão de fazer decisões o mais rápido possível. Todos os movimentos são feitos pressionando um botão apenas, combos são fáceis, listas de movimentos são concisas. Nós fomos direto ao ponto, o coração do gênero, para mostrarmos à você o porquê jogos de luta são tão incríveis.<h2 class="bb_tag">Se Você é um Veterano</h2>Este jogo é desenvolvido por um ex-desenvolvedor de Street Fighter e um jogador hardcore de torneios. Mixups, rushdown, zoning, e grapplers que parecem fortes demais no lançamento do jogo. Fantasy Strike tem tudo isso. E você pode jogá-lo com praticamente qualquer um na comunidade de jogos de luta, não importa o jogo que eles normalmente joguem, pois você pode chegar em níveis básicos de competência em Fantasy Strike em minutos e começar a jogar de verdade. Além disso você pode jogar com um joystick, controle, controle de Guitar Hero ou qualquer dispositivo que quiser.<h2 class="bb_tag">O que você ganha de graça</h2><br><strong>• Online excelente + jogar entre plataformas.</strong>Não conhecemos nenhum netcode melhor. Implementação customizada GGPO. Enfrente jogadores da versão Nintendo Switch e PlayStation 4.<br><strong>• Partida rápida online.</strong> Escolha um personagem, clique "pronto" e voce está jogando online.<br><strong>• Ranqueado online.</strong> Escolha um time de três personagens. Você vai jogar partidas "melhor 3 de 5" onde você joga com cada um dos seus personagens separadamente para variedade máxima! Este modo cria torneios na hora.<br><strong>• Assista partidas com um clique.</strong> Clique em um amigo e você automaticamente vai assistir sua partida. Só isso!<br><strong>• Desafio diário.</strong> Sobrevivência sem fim uma vez por dia. Compare seu resultado com o de todos naquele dia.<br><strong>• Modo Treino</strong> Inclui frame data dinamica e frame-step!<br><strong>• Tutorial.</strong> Um rápido tutorial de cinco minutos que te ensina como o jogo funciona.<br><strong>• Partida única vs AI.</strong> Escolha seu personagem e a dificuldade e jogue o quanto quiser!<br><strong>• Vídeos Descritivos.</strong> Cada personagem tem seu vídeo narrado pelo diretor do jogo David Sirlin. Cada video descreve os movimentos dos personagens e o seu tipo de jogo e estratégia.<br><br><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/390560/extras/6bf29ae2ae5372982c64f748c1e0eaf6.avif?t=1776975922"></span><br><br><strong>• Escape de agarrão único</strong> Para escapar agarrões normais, simplesmente não pressione botão algum! Você automaticamente fará um counter "yomi" em qualquer tentativa de agarramento.<br><strong>• Controles simples</strong> Todos os movimentos são feitos com um botão, então você pode jogar com qualquer controle.<br><br><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/390560/extras/2aa8a1599cd3809603606206f308ea90.avif?t=1776975922"></span><h2 class="bb_tag">Core Pack</h2>Se deseja mais, pegue o Core Pack para estes modos adicionais:<br><br><strong>• Modo Boss Rush.</strong> Construa um deck de poderes nesse modo roguelike insano. Você conseguirá derrotar todos os 8 chefões? <br><strong>• Modo Arcade.</strong> Com introduções ilustradas e com dublagem em inglês.<br><br><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/390560/extras/fba6dd4fcb1dd8c917195c7d1042bf3b.avif?t=1776975922"></span><br><br><strong>• Modo Sobrevivência</strong> Quanto tempo você pode durar nesses quatro sub-modos? Cada um é uma série de inimigos cada vez mais dificeis, sem precisar de loading. Oponentes ficam mais dificeis, e o modo inclui Chefões Sombrios.<br><strong>• Versus Local.</strong> Jogue 1v1 ou 3v3 de time (cada jogador escolhe 3 personagens e jogam melhores 3 de 5).<br><strong>• Desafiar Amigos.</strong> Desafie diretamente amigos para 1v1 ou 3v3 de time. Para enfrentar um amigo, vá para sua lista de amizades no jogo e clique nas espadas cruzadas para desafiá-los. (Ou clique no olho e os assista). É só isso!
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

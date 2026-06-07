@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Arena Breakout: Infinite</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('ed730669-936e-42e0-925a-2008aafc8f2f/399b1c45-b25d-43d5-b1f9-f209bd52d695.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="ed730669-936e-42e0-925a-2008aafc8f2f/3be20890-1809-4a73-bc0a-8e7dfca33380.ico"/> Arena Breakout: Infinite</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalhes</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="ed730669-936e-42e0-925a-2008aafc8f2f/9ea76ef0-1759-43ed-9066-b201fce553a7.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Tempo de jogo</TD>
+								<TD>N&#227;o Jogado</TD>
+							</TR>
+							<TR>
+								<TD>Última Atividade</TD>
+								<TD><a href="#quicklink-Nunca">Nunca</a> </TD>
+							</TR>
+							<TR>
+								<TD>Adicionado</TD>
+								<TD><a href="#quicklink-07/06/2026">07/06/2026</a> 0:35:52</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-07/06/2026">07/06/2026</a> 2:30:49</TD>
+							</TR>
+							<TR>
+								<TD>Status de Conclusão</TD>
+								<TD><a href="#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Biblioteca</TD>
+								<TD><a href="default_library_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Fonte</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Data de Lançamento</TD>
+								<TD><a href="#quicklink-15/09/2025">15/09/2025</a> </TD>
+							</TR>
+							<TR>
+								<TD>Pontuação da Comunidade</TD>
+								<TD><a href="#quicklink-82">82</a></TD>
+							</TR>
+							<TR>
+								<TD>Avaliação da crítica</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Pontuação do Usuário</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Gênero</TD>
+								<TD><a href="#quicklink-Shooter">Shooter</a><br/><a href="#quicklink-Strategy">Strategy</a><br/><a href="#quicklink-Tactical">Tactical</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desenvolvedor</TD>
+								<TD><a href="#quicklink-Morefun Studio Group">Morefun Studio Group</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="#quicklink-Morefun Studio Group">Morefun Studio Group</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Funções</TD>
+								<TD><a href="#quicklink-Co-Operative">Co-Operative</a><br/><a href="#quicklink-Massively Multiplayer Online (MMO)">Massively Multiplayer Online (MMO)</a><br/><a href="#quicklink-Multiplayer">Multiplayer</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://store.steampowered.com/app/2073620/Arena_Breakout_Infinite/" target="_blank">Steam</a><br/><a href="https://www.arenabreakoutinfinite.com/" target="_blank">Official Website</a><br/><a href="https://www.youtube.com/@ArenaBreakoutInfinite" target="_blank">YouTube</a><br/><a href="https://www.facebook.com/PlayArenaBreakoutpc" target="_blank">Facebook</a><br/><a href="https://twitter.com/ArenaBreakoutPC" target="_blank">Twitter</a><br/><a href="https://discord.gg/invite/arenabreakoutinfinite" target="_blank">Discord</a><br/><a href="https://www.twitch.tv/directory/category/arena-breakout-infinite" target="_blank">Twitch</a><br/><a href="https://www.instagram.com/arenabreakoutinfinite/" target="_blank">Instagram</a><br/><a href="https://store.epicgames.com/en-US/p/arena-breakout-infinite-cc318b" target="_blank">Epic</a><br/><a href="https://www.reddit.com/r/ArenaBreakoutInfinite" target="_blank">Subreddit</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descri&#231;&#227;o</H3>
+				</div>
+				<div class="description">
+					<p class="bb_paragraph"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2073620/extras/41142ea46e3225675cacc9181a8d6893.avif?t=1779265675"></span></p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2073620/extras/d142f6a4330a2264e4b2b2e5620bd88f.poster.avif?t=1779265675"></span></p><p class="bb_paragraph">Arena Breakout: Infinite é um jogo de extração tática de alto risco no qual cada decisão importa. Lute, colete espólios e escape — ou perca tudo. Com visuais incrivelmente realistas, som fiel à realidade e combate PvPvE implacável, cada invasão é uma aposta entre a glória ou a ruína.</p><p class="bb_paragraph"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2073620/extras/8b9d7e79363d8a21d4784d2656075b9f.avif?t=1779265675" data-big-src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2073620/extras_big/8b9d7e79363d8a21d4784d2656075b9f.webp?t=1779265675"></span></p><p class="bb_paragraph">O Arena Breakout: Infinite criou meticulosamente seis mapas diferenciados, cada um exigindo estratégias de invasão radicalmente diferentes. Corra pelos caminhos estreitos do Vale em ataques velozes ou planeje um cerco tático à zona de guerra do Arsenal, quadra por quadra. Mas atenção, a natureza não segue as suas regras! O clima em constante mudança na Zona Sombria pode transformar cada partida em uma nova aposta desesperada. Pense melhor, atire melhor e escape... antes que a zona engula você por inteiro.</p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2073620/extras/c9306f624b9633841eef4434e8c478ad.poster.avif?t=1779265675"></span></p><p class="bb_paragraph"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2073620/extras/dcf55b842687b617e453c446838bd20f.avif?t=1779265675" data-big-src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2073620/extras_big/dcf55b842687b617e453c446838bd20f.webp?t=1779265675"></span></p><p class="bb_paragraph">O Arena Breakout: Infinite dá as boas-vindas aos entusiastas de itens militares com o Sistema de Armeiro Supremo. A chegada da Temporada 5 expande seu arsenal com as novas armas FAMAS e T192. Escolha entre mais de 75 armas e 900 modificações em mais de 20 espaços para acessórios e fabrique sua obra-prima tática suprema.</p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2073620/extras/77219c0a215812e308615175cede8bf9.poster.avif?t=1779265675"></span></p><p class="bb_paragraph"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2073620/extras/938b69f0012a30618572e8b85185e662.avif?t=1779265675" data-big-src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2073620/extras_big/938b69f0012a30618572e8b85185e662.webp?t=1779265675"></span></p><p class="bb_paragraph">Anomalias consumiram o Vale Distorcido, deturpando o campo de batalha a cada toque sinistro do sino. Nesse ambiente instável, acionar forças interativas revela instantaneamente sua posição para monstros à espreita e jogadores rivais. Fique sempre alerta e adapte-se às distorções em constante evolução — sobreviver ao Vale exige vigilância constante.</p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2073620/extras/98449be95f951556a34f48d5bbfe9178.poster.avif?t=1779265675"></span></p><p class="bb_paragraph"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2073620/extras/54e22b895eb204ead088eeac001e6ed7.avif?t=1779265675" data-big-src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2073620/extras_big/54e22b895eb204ead088eeac001e6ed7.webp?t=1779265675"></span></p><p class="bb_paragraph">O Arena Breakout: Infinite dá as boas-vindas a todos os jogadores com recursos de qualidade de vida avançados, como Equipar Rápido e Sinalizações no Mapa. Nosso compromisso com a acessibilidade continua com o bate-papo por proximidade e um balanceamento preciso, garantindo uma experiência de extração justa, otimizada e intensa para todos.</p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2073620/extras/91e461541c3e13cf9dadb1b397f34c71.poster.avif?t=1779265675"></span></p><p class="bb_paragraph"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2073620/extras/a54d61ec6c087b3a90648800a106d401.avif?t=1779265675" data-big-src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2073620/extras_big/a54d61ec6c087b3a90648800a106d401.webp?t=1779265675"></span></p><p class="bb_paragraph">A Sala de Troféus é mais do que uma exposição — é a alma da sua evolução. Exiba com orgulho seus espólios conquistados com muito esforço enquanto fabrica munições de alta performance e armaduras avançadas. Com novos desafios e recompensas sazonais, sua vantagem tática aumenta a cada dia. Não se esqueça da cereja do bolo: um Caixa de Titânio 3×3 gratuita para proteger seus equipamentos de alto valor em todas as invasões.</p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2073620/extras/599645d51671b6f23ca4c9b8548ee797.poster.avif?t=1779265675"></span></p><p class="bb_paragraph"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2073620/extras/5f7f5b84ce34b0d2163eecd87e3fee37.avif?t=1779265675" data-big-src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2073620/extras_big/5f7f5b84ce34b0d2163eecd87e3fee37.webp?t=1779265675"></span></p><p class="bb_paragraph">Arena Breakout: Infinite oferece uma variedade de modos de jogo para todos os mercenários: Operações Táticas, Operações Individuais, Operações Secretas e modos rápidos de Mata-Mata 4v4. Não importa se você prefere o trabalho tático em equipe ou lutar por conta própria, entre no combate do seu jeito.</p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2073620/extras/1a1f050946dbe1a09f820ec985ef4e10.poster.avif?t=1779265675"></span></p><p class="bb_paragraph"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2073620/extras/bffba0313e3db18a714d9eba6f146e6e.avif?t=1779265675" data-big-src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2073620/extras_big/bffba0313e3db18a714d9eba6f146e6e.webp?t=1779265675"></span></p><p class="bb_paragraph">Em Arena Breakout: Infinite, o combate justo é garantido com nosso sistema antitrapaça em constante desenvolvimento. Isso inclui as gravações da Câmera de Eliminação, que permite que você denuncie com apenas um toque qualquer atividade suspeita. Além disso, se for confirmado que você perdeu uma partida devido a trapaças, uma compensação automática chegará no seu inventario.</p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2073620/extras/f709e172c1ef2aec55949ee134564d9c.poster.avif?t=1779265675"></span></p>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>
